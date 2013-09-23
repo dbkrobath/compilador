@@ -1,6 +1,22 @@
 #include "automato.h"
 
-//aqui vai a logica que le o arquivodo automato, coloca na tabela de transicoes
+
+int** tabelaTransicao;
+
+void inicializarAutomato()
+{
+
+    //entre outras coisas... inicia a tabela de transicao
+
+	int numeroDeLinhas = 20;
+	int numeroDeColunas = 176;
+
+ 	tabelaTransicao = (int **) calloc (numeroDeLinhas, sizeof(int*));
+	int indiceLinha;
+	for ( indiceLinha = 0; indiceLinha < numeroDeLinhas; indiceLinha++ )
+		tabelaTransicao[indiceLinha] = (int*) calloc (numeroDeColunas, sizeof(int));
+
+}
 
 int obterProximoEstado(int estadoAtual, char caracterLido, int *tipoSaida)
 {
@@ -13,14 +29,6 @@ int obterProximoEstado(int estadoAtual, char caracterLido, int *tipoSaida)
     FILE *fTransicoes;
     char c;
 
-	int** tabelaTransicao;
-	int numeroDeLinhas = 20;
-	int numeroDeColunas = 176;
-
- 	tabelaTransicao = (int **) calloc (numeroDeLinhas, sizeof(int*));
-	int indiceLinha;
-	for ( indiceLinha = 0; indiceLinha < numeroDeLinhas; indiceLinha++ )
-		tabelaTransicao[indiceLinha] = (int*) calloc (numeroDeColunas, sizeof(int));
 
 
     fTransicoes = fopen("transicoes.txt","r");

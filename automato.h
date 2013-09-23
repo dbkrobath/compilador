@@ -1,7 +1,10 @@
 #ifndef AUTOMATO_H_INCLUDED
 #define AUTOMATO_H_INCLUDED
 
-//Entrada: estado atual, caracter lido e
+int** tabelaTransicao;
+
+void inicializarAutomato();
+
 int obterProximoEstado(int estadoAtual, char caracterLido, int *tipoSaida);
 
 
