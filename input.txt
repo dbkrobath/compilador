@@ -1,0 +1,15 @@
+/* Programa exemplo 1 */
+
+int main() {
+
+	int a; //var a
+	int i; // var i
+	
+	a = 3;
+	
+	while(i < a) {
+		i = i + 1;
+	}
+
+	return 0;
+}

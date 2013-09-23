@@ -1,18 +1,8 @@
 #ifndef AUTOMATO_H_INCLUDED
 #define AUTOMATO_H_INCLUDED
 
-
-typedef struct _automato {
-    int estadoAtual;
-    int estadoAnterior;
-	int** funcaoDeTransicao;
-} automato ;
-
-typedef struct _definicaoDeTransicao {
-	int estadoAtual;
-	int proximoEstado;
-	char caractereLido;
-} definicaoDeTransicao;
+//Entrada: estado atual, caracter lido e
+int obterProximoEstado(int estadoAtual, char caracterLido, int *tipoSaida);
 
 
 #endif // AUTOMATO_H_INCLUDED
