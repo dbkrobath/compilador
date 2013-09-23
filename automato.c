@@ -16,16 +16,6 @@ void inicializarAutomato()
 	for ( indiceLinha = 0; indiceLinha < numeroDeLinhas; indiceLinha++ )
 		tabelaTransicao[indiceLinha] = (int*) calloc (numeroDeColunas, sizeof(int));
 
-}
-
-int obterProximoEstado(int estadoAtual, char caracterLido, int *tipoSaida)
-{
-
-    //consulta a tabela de transicoes com o estado atual e o caracter lido
-
-    //retorna a saida do automato e o proximo estado
-
-
     FILE *fTransicoes;
     char c;
 
@@ -52,7 +42,34 @@ int obterProximoEstado(int estadoAtual, char caracterLido, int *tipoSaida)
 
     fclose(fTransicoes);
 
+}
+
+int obterProximoEstado(int estadoAtual, char caracterLido, int *tipoSaida)
+{
+
+    //consulta a tabela de transicoes com o estado atual e o caracter lido
+
+    //retorna a saida do automato e o proximo estado
+
+
+
+
 
 
     return 1;
+}
+
+
+int MOCKUPobterProximoEstado(int estadoAtual, char caracterLido, int *tipoSaida)
+{
+    if(estadoAtual > 10)
+    {
+        *tipoSaida = 2;
+        return 0;
+    }
+    else
+    {
+        return ++estadoAtual;
+    }
+
 }

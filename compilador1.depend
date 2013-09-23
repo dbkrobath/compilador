@@ -3,3 +3,23 @@
 	<stdio.h>
 	<stdlib.h>
 
+1379970669 source:c:\users\diogo.krobath\documents\github\compilador\main.c
+	<stdio.h>
+	<stdlib.h>
+	"lexico.h"
+
+1379971217 c:\users\diogo.krobath\documents\github\compilador\lexico.h
+	<stdio.h>
+	<string.h>
+	"automato.h"
+
+1379969332 c:\users\diogo.krobath\documents\github\compilador\automato.h
+	<stdio.h>
+
+1379969414 source:c:\users\diogo.krobath\documents\github\compilador\automato.c
+	"automato.h"
+
+1379973406 source:c:\users\diogo.krobath\documents\github\compilador\lexico.c
+	"lexico.h"
+	<string.h>
+
