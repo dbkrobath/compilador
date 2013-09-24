@@ -4,11 +4,12 @@
 #include <string.h>
 #include "automato.h"
 #include "estruturas.h"
+#include "constantes.h"
 
 
 
 void extrairTokens(FILE *programaFonte);
 
-void inicializarTabelaSimbolos(FILE *ini);
+void inicializarLexico();
 
 #endif // LEXICO_H_INCLUDED

@@ -15,7 +15,7 @@ int main()
         exit(0);
     }
 
-    inicializarLexico(tabelaSimbolos);
+    inicializarLexico();
     extrairTokens(programaFonte);
     return 0;
 }

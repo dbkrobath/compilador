@@ -5,6 +5,10 @@
 #include <string.h>
 
 
+/*
+    Manipulação de listas
+*/
+
 void inicializaLista(noLista **L){
     *L = NULL;
 }
@@ -67,6 +71,9 @@ int ultimoIdentificador(noLista **L) {
 
 }
 
+/*
+    Manipulacao de Tokens
+*/
 
 token* criaToken(int tipo, char *valor) {
 
@@ -83,4 +90,95 @@ token* criaToken(int tipo, char *valor) {
     taux ->tipo = tipo;
 
     return taux;
+}
+
+
+/*
+    manipulação palavras reservadas
+*/
+
+void populaTabelaPalavrasReservadas(noLista **palavraReservada) {
+
+    FILE *entrada;
+    int id = 1;
+
+    entrada = fopen("palavrasreservadas.txt" , "r");
+
+    char *palavraLida;
+
+    while (fscanf(entrada, "%s", palavraLida) == 1)
+    {
+
+        char * palavraNova = malloc(strlen(palavraLida) + 1);
+        strcpy(palavraNova, palavraLida);
+
+        insereNo(id, palavraNova, palavraReservada);
+
+        id++;
+    }
+
+    fclose(entrada);
+}
+
+int buscaSimboloPalavraReservada(char *palavra, noLista **lista) {
+
+    noLista *resultado;
+
+    resultado = procuraLista(palavra, lista);
+
+    if (resultado == NULL) {
+        return 0;
+    } else {
+        return resultado->id;
+
+    }
+
+}
+
+/*
+    manipulação da tabela de strings
+*/
+
+int adicionaString(char *palavra, noLista **strings) {
+
+    int identificadorAnterior = ultimoIdentificador(strings);
+    int identificador;
+    if (identificadorAnterior < 0) {
+        identificador = 1;
+    } else {
+        identificador = identificadorAnterior + 1;
+    }
+
+
+    insereNo(identificador, palavra, strings);
+    return identificador;
+
+}
+
+int buscaTabelaStrings(char *palavra, noLista **strings) {
+
+    noLista *resultado;
+    resultado = procuraLista(palavra, strings);
+
+    if (resultado == NULL) {
+        return 0;
+    } else {
+        //printf("achou alguma coisas %d", resultado->identificador);
+        return resultado->id;
+    }
+
+}
+
+int buscaTabelaSimbolos(char *palavra, noLista **simbolos) {
+
+    noLista *resultado;
+    resultado = procuraLista(palavra, simbolos);
+
+    if (resultado == NULL) {
+        return 0;
+    } else {
+
+        //printf("achou alguma coisas %d", resultado->identificador);
+        return resultado->id;
+    }
 }
