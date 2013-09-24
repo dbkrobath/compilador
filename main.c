@@ -1,10 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "constantes.h"
 #include "lexico.h"
 
 int main()
 {
-    int** tabelaSimbolos;
 
     FILE *programaFonte;
 
@@ -15,7 +15,7 @@ int main()
         exit(0);
     }
 
-    inicializarTabelaSimbolos(tabelaSimbolos)
+    inicializarLexico(tabelaSimbolos);
     extrairTokens(programaFonte);
     return 0;
 }

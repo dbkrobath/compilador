@@ -6,6 +6,8 @@
     ESTADO 1 : Estado de erro
 */
 
+noLista *palavraReservada;
+noLista *simbolos;
 
 void adicionarCharNaString(char caracter, char* stringOriginal) {
 	int tamanho = strlen(stringOriginal);
@@ -13,6 +15,10 @@ void adicionarCharNaString(char caracter, char* stringOriginal) {
 	stringOriginal[tamanho + 1] = '\0';
 }
 
+void inicializarTabelaSimbolos()
+{
+
+}
 
 void extrairTokens(FILE *programaFonte)
 {
@@ -43,6 +49,7 @@ void extrairTokens(FILE *programaFonte)
             if(tipoSaida > 0)
             {
                 printf("%s",tokenFormado);
+                registrarTokenEncontrado(tokenFormado,tipoSaida);
 
                 //reinicia o token
                 tokenFormado[0] = '\0';
@@ -54,5 +61,21 @@ void extrairTokens(FILE *programaFonte)
         }
 
 
+    }
+}
+
+void registrarTokenEncontrado(char* tokenEncontrado, int tipo)
+{
+    token *token;
+
+    switch(tipo)
+    {
+        case INTEIRO:
+            token = criaToken(INTEIRO, tokenEncontrado);
+            break;
+
+        case FLOAT:
+            token = criaToken(FLOAT, tokenEncontrado);
+            break;
     }
 }

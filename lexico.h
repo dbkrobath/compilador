@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <string.h>
 #include "automato.h"
+#include "estruturas.h"
 
 
 
