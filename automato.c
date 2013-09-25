@@ -6,17 +6,15 @@ int* tabelaSaida;
 
 void inicializarAutomato()
 {
-
     //entre outras coisas... inicia a tabela de transicao
 
-	int numeroDeLinhas = 15;
+	int numeroDeLinhas = 25;
 	int numeroDeColunas = 176;
 
  	tabelaTransicao = (int **) calloc (numeroDeLinhas, sizeof(int*));
 	int indiceLinha;
 	for ( indiceLinha = 0; indiceLinha < numeroDeLinhas; indiceLinha++ )
 		tabelaTransicao[indiceLinha] = (int*) calloc (numeroDeColunas, sizeof(int));
-
 
     tabelaSaida = (int*) calloc (numeroDeLinhas, sizeof(int));
 
@@ -34,7 +32,6 @@ void inicializarAutomato()
     int caracterLido;
     int estadoProximo;
     int tipoSaida;
-
 
     while (fscanf(fTransicoes, "%d %d %d %d", &estadoAtual, &caracterLido, &estadoProximo, &tipoSaida) >= 3)
     {
@@ -58,6 +55,8 @@ int obterProximoEstado(int estadoAtual, char caracterLido, int *tipoSaida)
         *tipoSaida = tabelaSaida[estadoAtual];
     else
         *tipoSaida = 0;
+
+    printf("\n tipo saida antes do retorno %d e estado atual %d",*tipoSaida,estadoAtual);
 
     return proximoEstado;
 

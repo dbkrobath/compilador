@@ -24,6 +24,8 @@ int main() {
 
 	float b = 3.5	
 
+	string a = "teste de string"
+
 	return 0;
 
 }

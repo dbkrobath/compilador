@@ -44,8 +44,6 @@ noLista* procuraLista(char *valor, noLista *L){
 
     paux = L;
 
-
-
     while(paux != NULL){
 
         if(strcmp(paux->valor, valor) == 0) return paux;
@@ -108,24 +106,6 @@ void insereToken(int tipo, char *valor, token **T)
         *T = taux;
 }
 
-/*
-token* criaToken(int tipo, char *valor) {
-
-    token *taux;
-    if (valor == NULL)
-		valor = "";
-
-
-    taux = (token *) malloc (sizeof(token));
-	int tamanho = strlen(valor);
-    taux ->valor = (char*) malloc (tamanho * sizeof(char));
-	tamanho = strlen(valor);
-    strcpy (taux ->valor, valor);
-    taux ->tipo = tipo;
-
-    return taux;
-}
-*/
 
 /*
     manipulação palavras reservadas

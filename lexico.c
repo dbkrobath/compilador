@@ -63,48 +63,129 @@ void imprimeTokens(token *Tlista) {
 
 }
 
+int verificaEspacador(char caracter)
+{
+    int caracterASC = caracter;
+
+    switch(caracterASC)
+    {
+        case 32:
+            return 1;
+        break;
+
+        case 9:
+            return 1;
+        break;
+
+        case 13:
+            return 1;
+        break;
+
+        case 10:
+            return 1;
+        break;
+    }
+
+
+    return 0;
+}
+
+int processaCaracterLido(int *estadoAtual, char proximoCaracter,char *tokenFormado[200])
+{
+    int tipoSaida = 0;
+
+    int proximoEstado = obterProximoEstado(*estadoAtual, proximoCaracter, &tipoSaida);
+
+    printf("\n proximo estado %d - tipo saida  %d",proximoEstado,tipoSaida);
+
+    if(proximoEstado == 1)
+    {
+        printf("Erro no lexico");
+        return 0;
+    }
+
+    //caso o automato tenha retornado algum tipo de saída, considera que um token foi identificado
+    if(tipoSaida > 0)
+    {
+        if(verificaEspacador(proximoCaracter)==0)
+        {
+            adicionarCharNaString(proximoCaracter, &tokenFormado);
+        }
+
+        registrarTokenEncontrado(tokenFormado,tipoSaida);
+
+        tokenFormado[0] = '\0';
+    }
+    else
+    {
+        if(proximoEstado>1)
+            adicionarCharNaString(proximoCaracter, &tokenFormado);
+    }
+
+    return proximoEstado;
+}
+
 void extrairTokens(FILE *programaFonte)
 {
-    char caracterLido;
+    char proximoCaracter;
     int proximoEstado = 0;
     int estadoAtual = 0;
     int tipoSaida = 0;
+
+    int lerProximoCaracter = 1;
+
     char tokenFormado[200];
 
     tokenFormado[0] = '\0';
 
-    while (fscanf(programaFonte, "%c", &caracterLido) != EOF){
+    while (1){
 
-        estadoAtual = proximoEstado;
 
-        //obtem o proximo estado a partir do caracter atual
-        proximoEstado = obterProximoEstado(estadoAtual, caracterLido, &tipoSaida);
-        //printf("\n proximo estado: %d - tipo saida: %d \n ",proximoEstado,tipoSaida);
-
-        //estado de erro
-        if(proximoEstado == 1)
+        if(lerProximoCaracter==1)
         {
-            printf("Erro no lexico");
+            if(fscanf(programaFonte, "%c", &proximoCaracter) == EOF)
+            {
+                break;
+            }
         }
         else
         {
-            //caso o automato tenha retornado algum tipo de saída, considera que um token foi identificado
-            if(tipoSaida > 0)
-            {
-                //printf("%s",tokenFormado);
-                registrarTokenEncontrado(tokenFormado,tipoSaida);
-                //printf("\n ultimo caracter lido %c \n",caracterLido);
-                //reinicia o token
-                tokenFormado[0] = '\0';
-            }
-            else
-            {
-                if(proximoEstado>1)
-                    adicionarCharNaString(caracterLido, tokenFormado);
-            }
+            lerProximoCaracter = 1;
+        }
+
+        proximoEstado = obterProximoEstado(estadoAtual, proximoCaracter, &tipoSaida);
+
+        printf("\n proximo estado %d - tipo saida  %d",proximoEstado,tipoSaida);
+
+        if(proximoEstado == 1)
+        {
+            printf("Erro no lexico");
+            return 0;
         }
 
 
+        //caso o automato tenha retornado algum tipo de saída, considera que um token foi identificado
+        if(tipoSaida > 0)
+        {
+            if(verificaEspacador(proximoCaracter)==0)
+            {
+                lerProximoCaracter = 0;
+                //adicionarCharNaString(proximoCaracter, &tokenFormado);
+            }
+
+            registrarTokenEncontrado(tokenFormado,tipoSaida);
+
+            tokenFormado[0] = '\0';
+        }
+        else
+        {
+            //concatena o caracter lido a
+            if(proximoEstado>1)
+                adicionarCharNaString(proximoCaracter, &tokenFormado);
+        }
+
+
+        estadoAtual= proximoEstado;
     }
 
     imprimeTokens(TokenLista);
@@ -141,8 +222,9 @@ void registrarTokenEncontrado(char* tokenEncontrado, int tipo)
             char *target = malloc(strlen(tokenEncontrado));
             strcpy(target, palavraSemAspas);
 
-            adicionaSimboloLista(target, NoString);
+            adicionaSimboloLista(target, &NoString);
 
+            printf("\nString a ser inserida\n");
 
             insereToken(STRING,target,&TokenLista);
 

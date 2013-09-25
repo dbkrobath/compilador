@@ -7,3 +7,4 @@
 #define FLOAT 106
 #define DOUBLE 107
 #define STRING 108
+#define ATRIBUIÇÃO 109

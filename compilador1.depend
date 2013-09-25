@@ -20,14 +20,14 @@
 	<stdio.h>
 	"automato.h"
 
-1380083227 source:c:\users\diogo.krobath\documents\github\compilador\automato.c
+1380147459 source:c:\users\diogo.krobath\documents\github\compilador\automato.c
 	"automato.h"
 
-1380081861 source:c:\users\diogo.krobath\documents\github\compilador\lexico.c
+1380147683 source:c:\users\diogo.krobath\documents\github\compilador\lexico.c
 	"lexico.h"
 	<string.h>
 
-1380067297 source:c:\users\diogo.krobath\documents\github\compilador\estruturas.c
+1380126500 source:c:\users\diogo.krobath\documents\github\compilador\estruturas.c
 	<stdio.h>
 	<ctype.h>
 	<stdlib.h>
@@ -36,5 +36,5 @@
 
 1380066884 c:\users\diogo.krobath\documents\github\compilador\estruturas.h
 
-1379992616 c:\users\diogo.krobath\documents\github\compilador\constantes.h
+1380127404 c:\users\diogo.krobath\documents\github\compilador\constantes.h
 
