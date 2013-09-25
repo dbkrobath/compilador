@@ -96,7 +96,6 @@ int processaCaracterLido(int *estadoAtual, char proximoCaracter,char *tokenForma
 
     int proximoEstado = obterProximoEstado(*estadoAtual, proximoCaracter, &tipoSaida);
 
-    printf("\n proximo estado %d - tipo saida  %d",proximoEstado,tipoSaida);
 
     if(proximoEstado == 1)
     {
@@ -138,6 +137,8 @@ void extrairTokens(FILE *programaFonte)
 
     tokenFormado[0] = '\0';
 
+
+
     while (1){
 
 
@@ -153,9 +154,9 @@ void extrairTokens(FILE *programaFonte)
             lerProximoCaracter = 1;
         }
 
+
         proximoEstado = obterProximoEstado(estadoAtual, proximoCaracter, &tipoSaida);
 
-        printf("\n proximo estado %d - tipo saida  %d",proximoEstado,tipoSaida);
 
         if(proximoEstado == 1)
         {
@@ -167,11 +168,14 @@ void extrairTokens(FILE *programaFonte)
         //caso o automato tenha retornado algum tipo de saída, considera que um token foi identificado
         if(tipoSaida > 0)
         {
+
             if(verificaEspacador(proximoCaracter)==0)
             {
+
                 lerProximoCaracter = 0;
                 //adicionarCharNaString(proximoCaracter, &tokenFormado);
             }
+
 
             registrarTokenEncontrado(tokenFormado,tipoSaida);
 
@@ -179,6 +183,7 @@ void extrairTokens(FILE *programaFonte)
         }
         else
         {
+
             //concatena o caracter lido a
             if(proximoEstado>1)
                 adicionarCharNaString(proximoCaracter, &tokenFormado);
@@ -188,18 +193,12 @@ void extrairTokens(FILE *programaFonte)
         estadoAtual= proximoEstado;
     }
 
+
     imprimeTokens(TokenLista);
 }
 
 void registrarTokenEncontrado(char* tokenEncontrado, int tipo)
 {
-
-
-
-
-    long tamanho = strlen(tokenEncontrado);
-    int cont = 1;
-    char palavraSemAspas[tamanho - 2];
 
     switch(tipo)
     {
@@ -214,20 +213,8 @@ void registrarTokenEncontrado(char* tokenEncontrado, int tipo)
 
         case STRING:
 
-            while (cont < tamanho - 1) {
-                palavraSemAspas[cont - 1] = tokenEncontrado[cont];
-                cont ++;
-            }
-
-            char *target = malloc(strlen(tokenEncontrado));
-            strcpy(target, palavraSemAspas);
-
-            adicionaSimboloLista(target, &NoString);
-
-            printf("\nString a ser inserida\n");
-
-            insereToken(STRING,target,&TokenLista);
-
+            adicionaSimboloLista(tokenEncontrado, &NoString);
+            insereToken(STRING,tokenEncontrado,&TokenLista);
             break;
 
         //deals with string
