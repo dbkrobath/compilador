@@ -25,6 +25,8 @@ void inicializarLexico()
     inicializaToken(&TokenLista);
     populaTabelaPalavrasReservadas(&NoPalavraReservada);
 
+    inicializarAutomato();
+
     //imprimeLista(NoPalavraReservada);
 
 }
@@ -76,13 +78,13 @@ void extrairTokens(FILE *programaFonte)
         estadoAtual = proximoEstado;
 
         //obtem o proximo estado a partir do caracter atual
-        proximoEstado = MOCKUPobterProximoEstado(estadoAtual, caracterLido, &tipoSaida);
+        proximoEstado = obterProximoEstado(estadoAtual, caracterLido, &tipoSaida);
         //printf("\n proximo estado: %d - tipo saida: %d \n ",proximoEstado,tipoSaida);
 
         //estado de erro
         if(proximoEstado == 1)
         {
-            //printf("Erro no lexico");
+            printf("Erro no lexico");
         }
         else
         {
@@ -97,7 +99,8 @@ void extrairTokens(FILE *programaFonte)
             }
             else
             {
-                adicionarCharNaString(caracterLido, tokenFormado);
+                if(proximoEstado>1)
+                    adicionarCharNaString(caracterLido, tokenFormado);
             }
         }
 

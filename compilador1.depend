@@ -16,14 +16,14 @@
 	"estruturas.h"
 	"constantes.h"
 
-1379975310 c:\users\diogo.krobath\documents\github\compilador\automato.h
+1380081971 c:\users\diogo.krobath\documents\github\compilador\automato.h
 	<stdio.h>
 	"automato.h"
 
-1380069150 source:c:\users\diogo.krobath\documents\github\compilador\automato.c
+1380081670 source:c:\users\diogo.krobath\documents\github\compilador\automato.c
 	"automato.h"
 
-1380068742 source:c:\users\diogo.krobath\documents\github\compilador\lexico.c
+1380081861 source:c:\users\diogo.krobath\documents\github\compilador\lexico.c
 	"lexico.h"
 	<string.h>
 

@@ -33,17 +33,22 @@
 		</Compiler>
 		<Unit filename="automato.c">
 			<Option compilerVar="CC" />
-			<Option target="&lt;{~None~}&gt;" />
+			<Option target="Debug" />
 		</Unit>
 		<Unit filename="automato.h">
-			<Option target="&lt;{~None~}&gt;" />
+			<Option target="Debug" />
 		</Unit>
+		<Unit filename="constantes.h" />
+		<Unit filename="estruturas.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="estruturas.h" />
 		<Unit filename="lexico.c">
 			<Option compilerVar="CC" />
-			<Option target="&lt;{~None~}&gt;" />
+			<Option target="Debug" />
 		</Unit>
 		<Unit filename="lexico.h">
-			<Option target="&lt;{~None~}&gt;" />
+			<Option target="Debug" />
 		</Unit>
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />

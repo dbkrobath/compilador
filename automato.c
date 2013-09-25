@@ -2,13 +2,14 @@
 
 
 int** tabelaTransicao;
+int* tabelaSaida;
 
 void inicializarAutomato()
 {
 
     //entre outras coisas... inicia a tabela de transicao
 
-	int numeroDeLinhas = 20;
+	int numeroDeLinhas = 8;
 	int numeroDeColunas = 176;
 
  	tabelaTransicao = (int **) calloc (numeroDeLinhas, sizeof(int*));
@@ -16,10 +17,11 @@ void inicializarAutomato()
 	for ( indiceLinha = 0; indiceLinha < numeroDeLinhas; indiceLinha++ )
 		tabelaTransicao[indiceLinha] = (int*) calloc (numeroDeColunas, sizeof(int));
 
+
+    tabelaSaida = (int*) calloc (numeroDeLinhas, sizeof(int));
+
     FILE *fTransicoes;
     char c;
-
-
 
     fTransicoes = fopen("transicoes.txt","r");
     if(!fTransicoes)
@@ -31,13 +33,15 @@ void inicializarAutomato()
     int estadoAtual;
     int caracterLido;
     int estadoProximo;
-    char tokenType[30];
+    int tipoSaida;
 
 
-    while (fscanf(fTransicoes, "%d %d %d %s", &estadoAtual, &caracterLido, &estadoProximo, tokenType) >= 3)
+    while (fscanf(fTransicoes, "%d %d %d %d", &estadoAtual, &caracterLido, &estadoProximo, &tipoSaida) >= 3)
     {
         tabelaTransicao[estadoAtual][caracterLido] = estadoProximo;
-        printf("%d %d %d %s \n", estadoAtual, caracterLido, estadoProximo, tokenType);
+
+        if(estadoProximo==0)
+            tabelaSaida[estadoAtual] = tipoSaida;
     }
 
     fclose(fTransicoes);
@@ -46,31 +50,17 @@ void inicializarAutomato()
 
 int obterProximoEstado(int estadoAtual, char caracterLido, int *tipoSaida)
 {
+    int caracterASC = caracterLido;
 
-    //consulta a tabela de transicoes com o estado atual e o caracter lido
+    int proximoEstado = tabelaTransicao[estadoAtual][caracterASC];
 
-    //retorna a saida do automato e o proximo estado
-
-
-
-
-
-
-    return 1;
-}
-
-
-int MOCKUPobterProximoEstado(int estadoAtual, char caracterLido, int *tipoSaida)
-{
-    if(estadoAtual > 10)
-    {
-        *tipoSaida = 2;
-        return 0;
-    }
+    if(proximoEstado==0)
+        *tipoSaida = tabelaSaida[estadoAtual];
     else
-    {
         *tipoSaida = 0;
-        return ++estadoAtual;
-    }
+
+    return proximoEstado;
 
 }
+
+
