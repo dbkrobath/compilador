@@ -9,7 +9,7 @@ void inicializarAutomato()
 
     //entre outras coisas... inicia a tabela de transicao
 
-	int numeroDeLinhas = 8;
+	int numeroDeLinhas = 15;
 	int numeroDeColunas = 176;
 
  	tabelaTransicao = (int **) calloc (numeroDeLinhas, sizeof(int*));
