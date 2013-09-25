@@ -9,17 +9,17 @@ typedef struct _noLista{
 
 void inicializaLista(noLista **L);
 void insereNo(int value, char *palavra, noLista **L);
-noLista* procuraLista(char *palavra, noLista **L);
+noLista* procuraLista(char *palavra, noLista *L);
 int ultimoIdentificador(noLista **L);
 
 typedef struct _token{
     int tipo;
     char *valor; //valor
-    char *segundoValor;
+    struct _token *proxToken
 }token;
 
-token* criaToken(int tipo, char *valor);
-token* procuraToken(int tipo, token *L);
+void inicializaToken(token **T);
+void insereToken(int tipo, char *valor, token **T);
 
 
 #endif // ESTRUTURAS_H_INCLUDED

@@ -69,6 +69,7 @@ int MOCKUPobterProximoEstado(int estadoAtual, char caracterLido, int *tipoSaida)
     }
     else
     {
+        *tipoSaida = 0;
         return ++estadoAtual;
     }
 

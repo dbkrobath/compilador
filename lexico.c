@@ -9,6 +9,7 @@
 noLista *NoPalavraReservada;
 noLista *NoSimbolo;
 noLista *NoString;
+token *TokenLista;
 
 void adicionarCharNaString(char caracter, char* stringOriginal) {
 	int tamanho = strlen(stringOriginal);
@@ -21,9 +22,10 @@ void inicializarLexico()
     inicializaLista(&NoPalavraReservada);
     inicializaLista(&NoSimbolo);
     inicializaLista(&NoString);
+    inicializaToken(&TokenLista);
     populaTabelaPalavrasReservadas(&NoPalavraReservada);
 
-    imprimeLista(NoPalavraReservada);
+    //imprimeLista(NoPalavraReservada);
 
 }
 
@@ -38,6 +40,22 @@ void imprimeLista(noLista *lista) {
         printf("\npalavra %s",paux->valor);
         printf("\n");
         paux = paux->prox;
+    }
+    printf("\n");
+
+}
+
+void imprimeTokens(token *Tlista) {
+
+    token *taux;
+
+    taux = Tlista;
+
+    while(taux!=NULL){
+        printf("\n tipo %d",taux->tipo);
+        printf("\n valor %s",taux->valor);
+        printf("\n");
+        taux = taux->proxToken;
     }
     printf("\n");
 
@@ -59,21 +77,21 @@ void extrairTokens(FILE *programaFonte)
 
         //obtem o proximo estado a partir do caracter atual
         proximoEstado = MOCKUPobterProximoEstado(estadoAtual, caracterLido, &tipoSaida);
-
+        //printf("\n proximo estado: %d - tipo saida: %d \n ",proximoEstado,tipoSaida);
 
         //estado de erro
         if(proximoEstado == 1)
         {
-            printf("Erro no lexico");
+            //printf("Erro no lexico");
         }
         else
         {
             //caso o automato tenha retornado algum tipo de sa�da, considera que um token foi identificado
             if(tipoSaida > 0)
             {
-                printf("%s",tokenFormado);
+                //printf("%s",tokenFormado);
                 registrarTokenEncontrado(tokenFormado,tipoSaida);
-
+                //printf("\n ultimo caracter lido %c \n",caracterLido);
                 //reinicia o token
                 tokenFormado[0] = '\0';
             }
@@ -85,74 +103,69 @@ void extrairTokens(FILE *programaFonte)
 
 
     }
+
+    imprimeTokens(TokenLista);
 }
 
 void registrarTokenEncontrado(char* tokenEncontrado, int tipo)
 {
-    token *token;
+
+
+
+
+    long tamanho = strlen(tokenEncontrado);
+    int cont = 1;
+    char palavraSemAspas[tamanho - 2];
 
     switch(tipo)
     {
+
         case INTEIRO:
-            token = criaToken(INTEIRO, tokenEncontrado);
+            insereToken(INTEIRO,tokenEncontrado,&TokenLista);
             break;
 
         case FLOAT:
-            token = criaToken(FLOAT, tokenEncontrado);
+            insereToken(FLOAT,tokenEncontrado,&TokenLista);
             break;
 
         case STRING:
 
-            //retira aspas da string e depois adiciona na tabela de strings
-
-            long tamanho = strlen(palavra);
-            int cont = 1;
-            char palavraSemAspas[tamanho - 2];
-
             while (cont < tamanho - 1) {
-                palavraSemAspas[cont - 1] = palavra[cont];
+                palavraSemAspas[cont - 1] = tokenEncontrado[cont];
                 cont ++;
             }
 
-            char *target = malloc(strlen(palavra));
+            char *target = malloc(strlen(tokenEncontrado));
             strcpy(target, palavraSemAspas);
 
-            adicionaString(target, strings);
+            adicionaSimboloLista(target, NoString);
 
-            token = criaToken(STRING, target);
+
+            insereToken(STRING,target,&TokenLista);
 
             break;
+
         //deals with string
         default:
 
-            int encontrou = 0;
             //    Verifica se palavra esta na lista de palavras reservadas!
-            int resultadoBusca = buscaSimboloPalavraReservada(palavra, palavrasReservadas);
-            if (resultadoBusca > 0) {
-                encontrou = 1;
-                token = criaToken(PALAVRARESERVADA, palavra);
+            //imprimeLista(NoPalavraReservada);
+
+            if (buscaSimboloLista(tokenEncontrado, NoPalavraReservada) > 0) {
+                insereToken(PALAVRARESERVADA,tokenEncontrado,&TokenLista);
             }
-
-
-            //    Se não é Palavra reservada verifica ser é simbolo
-            if (encontrou == 0) {
-                resultadoBusca = buscaTabelaSimbolos(palavra, simbolos);
-                if (resultadoBusca > 0) {
-                    encontrou = 1;
-                    token = criaToken(tipo, palavra);
+            else
+                if (buscaSimboloLista(tokenEncontrado, NoSimbolo) > 0) {
+                    insereToken(tipo,tokenEncontrado,&TokenLista);
                 }
-
-            }
-
-    //        Não foi encontrado nem na tabela de palavras reservadas  ou de simbolos
-            if (encontrou == 0) {
-
-                adicionaSimbolo(palavra, simbolos);
-    //            Cria token
-                token = criaToken(tipo, palavra);
-
-            }
+                else
+                {
+                    adicionaSimboloLista(tokenEncontrado, &NoSimbolo);
+                    insereToken(tipo,tokenEncontrado,&TokenLista);
+                }
 
             break;
     }
+
+
 }

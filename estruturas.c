@@ -39,12 +39,15 @@ void insereNo(int id, char *valor, noLista **L){
 }
 
 
-noLista* procuraLista(char *valor, noLista **L){
+noLista* procuraLista(char *valor, noLista *L){
     noLista *paux;
 
-    paux = *L;
+    paux = L;
+
+
 
     while(paux != NULL){
+
         if(strcmp(paux->valor, valor) == 0) return paux;
         paux = paux->prox;
     }
@@ -75,6 +78,37 @@ int ultimoIdentificador(noLista **L) {
     Manipulacao de Tokens
 */
 
+void inicializaToken(token **T)
+{
+    *T = NULL;
+}
+
+void insereToken(int tipo, char *valor, token **T)
+{
+    token *taux, *pLoop;
+
+    if ( *T != NULL) {
+        pLoop = *T;
+        while( pLoop->proxToken != NULL){
+            pLoop = pLoop->proxToken;
+        }
+    }
+
+    taux = (token *) malloc (sizeof(token));
+
+    int tamanho = strlen(valor);
+    taux ->valor = (char*) malloc (tamanho * sizeof(char));
+    strcpy (taux ->valor, valor);
+    taux ->tipo = tipo;
+    taux ->proxToken = NULL;
+
+    if ( *T != NULL)
+        pLoop->proxToken = taux;
+    else
+        *T = taux;
+}
+
+/*
 token* criaToken(int tipo, char *valor) {
 
     token *taux;
@@ -91,7 +125,7 @@ token* criaToken(int tipo, char *valor) {
 
     return taux;
 }
-
+*/
 
 /*
     manipulação palavras reservadas
@@ -120,28 +154,14 @@ void populaTabelaPalavrasReservadas(noLista **palavraReservada) {
     fclose(entrada);
 }
 
-int buscaSimboloPalavraReservada(char *palavra, noLista **lista) {
-
-    noLista *resultado;
-
-    resultado = procuraLista(palavra, lista);
-
-    if (resultado == NULL) {
-        return 0;
-    } else {
-        return resultado->id;
-
-    }
-
-}
 
 /*
-    manipulação da tabela de strings
+    manipulação de tabela de simbolos
 */
 
-int adicionaString(char *palavra, noLista **strings) {
+int adicionaSimboloLista(char *palavra, noLista **lista) {
 
-    int identificadorAnterior = ultimoIdentificador(strings);
+    int identificadorAnterior = ultimoIdentificador(lista);
     int identificador;
     if (identificadorAnterior < 0) {
         identificador = 1;
@@ -149,36 +169,21 @@ int adicionaString(char *palavra, noLista **strings) {
         identificador = identificadorAnterior + 1;
     }
 
-
-    insereNo(identificador, palavra, strings);
+    insereNo(identificador, palavra, lista);
     return identificador;
 
 }
 
-int buscaTabelaStrings(char *palavra, noLista **strings) {
+int buscaSimboloLista(char *palavra, noLista *lista) {
 
     noLista *resultado;
-    resultado = procuraLista(palavra, strings);
-
-    if (resultado == NULL) {
-        return 0;
-    } else {
-        //printf("achou alguma coisas %d", resultado->identificador);
-        return resultado->id;
-    }
-
-}
-
-int buscaTabelaSimbolos(char *palavra, noLista **simbolos) {
-
-    noLista *resultado;
-    resultado = procuraLista(palavra, simbolos);
+    resultado = procuraLista(palavra, lista);
 
     if (resultado == NULL) {
         return 0;
     } else {
 
-        //printf("achou alguma coisas %d", resultado->identificador);
         return resultado->id;
     }
 }
+
