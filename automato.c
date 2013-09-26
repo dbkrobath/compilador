@@ -1,12 +1,19 @@
 #include "automato.h"
 
-
+//matrix de trainsicoes, linhas sao os estados e colunas os caracters em codigo ASC
 int** tabelaTransicao;
+
+//tabela contendo o codigo dos tipos de saidas dos estados quando voltam ao estado inicial
 int* tabelaSaida;
+
+
+/*
+    Le a descricao do automato em transicoes.txt
+*/
 
 void inicializarAutomato()
 {
-    //entre outras coisas... inicia a tabela de transicao
+
 
 	int numeroDeLinhas = 25;
 	int numeroDeColunas = 176;
@@ -24,7 +31,7 @@ void inicializarAutomato()
     fTransicoes = fopen("transicoes.txt","r");
     if(!fTransicoes)
     {
-        printf( "Erro na abertura do arquivo");
+        printf( "Erro na abertura do arquivo de transicoes");
         exit(0);
     }
 
@@ -44,6 +51,11 @@ void inicializarAutomato()
     fclose(fTransicoes);
 
 }
+
+/*
+    Obtem o proximo estado do automato e, se houver, o codigo associado ao output da transição
+    Recebe estado atual e o caracter lido
+*/
 
 int obterProximoEstado(int estadoAtual, char caracterLido, int *tipoSaida)
 {

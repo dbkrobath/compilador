@@ -1,31 +1,19 @@
-/* Programa exemplo 1 */
+/*
+Este arquivo contem um exemplo de entrada para o analisador lexico
+*/
 
+int main(){
+	int a=0; //declaracao da variavel a
+	int b=1; //declaracao da variavel b
 
-int main() {
+	if (b>=a){ a = a + 1; }
 
+	while(b<10){ b = a * 2; }
 	
+	float a = 3.5
 
-	int a; 	//varasasa a
- a b c d e
-	// var i
-	
-	
-	a=32;
-	
-
-
-	while(i < a) {
-		
-		i = i + 1;
-	
-	}
-
-
-
-	float b = 3.5	
-
-	string a = "teste de string"
+	printf("Programa teste");
 
 	return 0;
-
+	
 }

@@ -10,6 +10,10 @@
 
 void extrairTokens(FILE *programaFonte);
 
+token* retornarTokenEncontrado(char* tokenEncontrado, int tipo);
+
 void inicializarLexico();
+
+int verificaEspacador(char caracter);
 
 #endif // LEXICO_H_INCLUDED

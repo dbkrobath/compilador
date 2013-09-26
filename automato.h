@@ -3,7 +3,6 @@
 #include <stdio.h>
 #include "automato.h"
 
-int** tabelaTransicao;
 
 void inicializarAutomato();
 

@@ -72,82 +72,6 @@ int ultimoIdentificador(noLista **L) {
 
 }
 
-/*
-    Manipulacao de Tokens
-*/
-
-void inicializaToken(token **T)
-{
-    *T = NULL;
-}
-
-void insereToken(int tipo, char *valor, token **T)
-{
-    token *taux, *pLoop;
-
-
-
-    if ( *T != NULL) {
-        pLoop = *T;
-        while( pLoop->proxToken != NULL){
-            pLoop = pLoop->proxToken;
-        }
-    }
-
-
-
-    taux = (token *) malloc (sizeof(token));
-
-    int tamanho = strlen(valor)+1;
-
-
-
-    taux ->valor = (char*) malloc (tamanho * sizeof(char));
-    strcpy (taux ->valor, valor);
-    taux ->tipo = tipo;
-    taux ->proxToken = NULL;
-
-
-
-    if ( *T != NULL)
-        pLoop->proxToken = taux;
-    else
-        *T = taux;
-}
-
-
-/*
-    manipulação palavras reservadas
-*/
-
-void populaTabelaPalavrasReservadas(noLista **palavraReservada) {
-
-    FILE *entrada;
-    int id = 1;
-
-    entrada = fopen("palavrasreservadas.txt" , "r");
-
-    char *palavraLida;
-
-    while (fscanf(entrada, "%s", palavraLida) == 1)
-    {
-
-        char * palavraNova = malloc(strlen(palavraLida) + 1);
-        strcpy(palavraNova, palavraLida);
-
-        insereNo(id, palavraNova, palavraReservada);
-
-        id++;
-    }
-
-    fclose(entrada);
-}
-
-
-/*
-    manipulação de tabela de simbolos
-*/
-
 int adicionaSimboloLista(char *palavra, noLista **lista) {
 
     int identificadorAnterior = ultimoIdentificador(lista);
@@ -174,5 +98,106 @@ int buscaSimboloLista(char *palavra, noLista *lista) {
 
         return resultado->id;
     }
+}
+
+
+void imprimeLista(noLista *lista) {
+
+    noLista *paux;
+
+    paux = lista;
+
+    while(paux!=NULL){
+        printf("\nidentificador %d",paux->id);
+        printf("\npalavra %s",paux->valor);
+        printf("\n");
+        paux = paux->prox;
+    }
+    printf("\n");
+
+}
+
+/*
+    Manipulacao de Tokens
+*/
+
+void inicializaToken(token **T)
+{
+    *T = NULL;
+}
+
+//apenas gera o token, nao insere na ista ligada
+token* geraToken(int tipo, char *valor)
+{
+    token *taux;
+
+    taux = (token *) malloc (sizeof(token));
+
+    int tamanho = strlen(valor)+1;
+    taux ->valor = (char*) malloc (tamanho * sizeof(char));
+
+    strcpy (taux ->valor, valor);
+    taux ->tipo = tipo;
+    taux ->proxToken = NULL;
+
+    return taux;
+}
+
+token* insereToken(int tipo, char *valor, token **T)
+{
+    token *taux, *pLoop;
+
+
+
+    if ( *T != NULL) {
+        pLoop = *T;
+        while( pLoop->proxToken != NULL){
+            pLoop = pLoop->proxToken;
+        }
+    }
+
+    taux = (token *) malloc (sizeof(token));
+
+    int tamanho = strlen(valor)+1;
+    taux ->valor = (char*) malloc (tamanho * sizeof(char));
+    strcpy (taux ->valor, valor);
+    taux ->tipo = tipo;
+    taux ->proxToken = NULL;
+
+    if ( *T != NULL)
+        pLoop->proxToken = taux;
+    else
+        *T = taux;
+
+
+    return taux;
+}
+
+
+/*
+    popula a tabela de palavras reservadas
+*/
+
+void populaTabelaPalavrasReservadas(noLista **palavraReservada) {
+
+    FILE *entrada;
+    int id = 1;
+
+    entrada = fopen("palavrasreservadas.txt" , "r");
+
+    char *palavraLida;
+
+    while (fscanf(entrada, "%s", palavraLida) == 1)
+    {
+
+        char * palavraNova = malloc(strlen(palavraLida) + 1);
+        strcpy(palavraNova, palavraLida);
+
+        insereNo(id, palavraNova, palavraReservada);
+
+        id++;
+    }
+
+    fclose(entrada);
 }
 

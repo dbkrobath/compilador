@@ -11,14 +11,34 @@ int main()
     programaFonte = fopen("input.txt","r");
     if(!programaFonte)
     {
-        printf( "Erro na abertura do arquivo");
+        printf( "Erro na abertura do arquivo fonte");
         exit(0);
     }
 
-
     inicializarLexico();
 
-    extrairTokens(programaFonte);
+    token* tokenLido;
+
+    //realiza a leitura de tokens até o lexico retornar o tipo NO_TOKENS
+
+    tokenLido = extraiProximoToken(programaFonte);
+
+    while (tokenLido->tipo != NO_TOKENS)
+    {
+
+        printf("\n\n  Tipo: %d",tokenLido->tipo);
+        printf("\n Valor: %s",tokenLido->valor);
+
+        tokenLido = extraiProximoToken(programaFonte);
+    }
+
+
+    //apenas para imprimir o token to tipo NO_TOKENS
+
+    printf("\n\n  Tipo: %d",tokenLido->tipo);
+    printf("\n Valor: %s",tokenLido->valor);
+
+    fclose(programaFonte);
 
     return 0;
 }
