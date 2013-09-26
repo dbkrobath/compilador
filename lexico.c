@@ -90,39 +90,6 @@ int verificaEspacador(char caracter)
     return 0;
 }
 
-int processaCaracterLido(int *estadoAtual, char proximoCaracter,char *tokenFormado[200])
-{
-    int tipoSaida = 0;
-
-    int proximoEstado = obterProximoEstado(*estadoAtual, proximoCaracter, &tipoSaida);
-
-
-    if(proximoEstado == 1)
-    {
-        printf("Erro no lexico");
-        return 0;
-    }
-
-    //caso o automato tenha retornado algum tipo de saída, considera que um token foi identificado
-    if(tipoSaida > 0)
-    {
-        if(verificaEspacador(proximoCaracter)==0)
-        {
-            adicionarCharNaString(proximoCaracter, &tokenFormado);
-        }
-
-        registrarTokenEncontrado(tokenFormado,tipoSaida);
-
-        tokenFormado[0] = '\0';
-    }
-    else
-    {
-        if(proximoEstado>1)
-            adicionarCharNaString(proximoCaracter, &tokenFormado);
-    }
-
-    return proximoEstado;
-}
 
 void extrairTokens(FILE *programaFonte)
 {
@@ -138,33 +105,34 @@ void extrairTokens(FILE *programaFonte)
     tokenFormado[0] = '\0';
 
 
-
     while (1){
 
 
         if(lerProximoCaracter==1)
         {
+
+
             if(fscanf(programaFonte, "%c", &proximoCaracter) == EOF)
             {
+                proximoEstado = obterProximoEstado(estadoAtual, proximoCaracter, &tipoSaida);
+
+                if(tipoSaida>0)
+                {
+                    registrarTokenEncontrado(tokenFormado,tipoSaida);
+                }
+
+                registrarTokenEncontrado("",NO_TOKENS);
                 break;
             }
-            proximoEstado = obterProximoEstado(estadoAtual, proximoCaracter, &tipoSaida);
+
+
         }
         else
         {
-            proximoEstado = obterProximoEstado(estadoAtual, proximoCaracter, &tipoSaida);
             lerProximoCaracter = 1;
         }
 
-<<<<<<< HEAD
-
-
-
-=======
-
         proximoEstado = obterProximoEstado(estadoAtual, proximoCaracter, &tipoSaida);
-
->>>>>>> a323a90ac805ca5ebccb1759cfa1e7943b61a9dd
 
         if(proximoEstado == 1)
         {
@@ -181,9 +149,7 @@ void extrairTokens(FILE *programaFonte)
 
             if(verificaEspacador(proximoCaracter)==0)
             {
-
                 lerProximoCaracter = 0;
-                //adicionarCharNaString(proximoCaracter, &tokenFormado);
             }
 
 
@@ -221,11 +187,17 @@ void registrarTokenEncontrado(char* tokenEncontrado, int tipo)
             insereToken(FLOAT,tokenEncontrado,&TokenLista);
             break;
 
+        case NO_TOKENS:
+            insereToken(NO_TOKENS,"",&TokenLista);
+            break;
+
         case STRING:
 
             adicionaSimboloLista(tokenEncontrado, &NoString);
             insereToken(STRING,tokenEncontrado,&TokenLista);
             break;
+
+
 
         //deals with string
         default:

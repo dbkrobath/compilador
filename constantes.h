@@ -8,3 +8,5 @@
 #define DOUBLE 107
 #define STRING 108
 #define ATRIBUIÇÃO 109
+#define NO_TOKENS 110
+#define COMENTARIO 999

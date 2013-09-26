@@ -23,7 +23,7 @@
 1380138300 source:c:\users\diogo.krobath\documents\github\compilador\automato.c
 	"automato.h"
 
-1380160885 source:c:\users\diogo.krobath\documents\github\compilador\lexico.c
+1380168061 source:c:\users\diogo.krobath\documents\github\compilador\lexico.c
 	"lexico.h"
 	<string.h>
 
@@ -36,7 +36,7 @@
 
 1380138300 c:\users\diogo.krobath\documents\github\compilador\estruturas.h
 
-1380138300 c:\users\diogo.krobath\documents\github\compilador\constantes.h
+1380166556 c:\users\diogo.krobath\documents\github\compilador\constantes.h
 
 1380138300 source:c:\users\diogo.krobath\documents\compilador\compilador-master\compilador-master\automato.c
 	"automato.h"
