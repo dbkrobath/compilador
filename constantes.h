@@ -8,3 +8,5 @@
 #define STRING 108
 #define NO_TOKENS 110
 #define COMENTARIO 999
+
+#define NUMERO_ESTADOS 17

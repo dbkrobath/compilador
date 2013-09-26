@@ -16,9 +16,9 @@
 	"estruturas.h"
 	"constantes.h"
 
-1380223050 c:\users\diogo.krobath\documents\github\compilador\automato.h
+1380228106 c:\users\diogo.krobath\documents\github\compilador\automato.h
 	<stdio.h>
-	"automato.h"
+	"constantes.h"
 
 1380223491 source:c:\users\diogo.krobath\documents\github\compilador\automato.c
 	"automato.h"
@@ -36,7 +36,7 @@
 
 1380222991 c:\users\diogo.krobath\documents\github\compilador\estruturas.h
 
-1380172120 c:\users\diogo.krobath\documents\github\compilador\constantes.h
+1380228056 c:\users\diogo.krobath\documents\github\compilador\constantes.h
 
 1380138300 source:c:\users\diogo.krobath\documents\compilador\compilador-master\compilador-master\automato.c
 	"automato.h"

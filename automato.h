@@ -1,7 +1,8 @@
 #ifndef AUTOMATO_H_INCLUDED
 #define AUTOMATO_H_INCLUDED
 #include <stdio.h>
-#include "automato.h"
+#include "constantes.h"
+
 
 
 void inicializarAutomato();

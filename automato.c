@@ -15,7 +15,7 @@ void inicializarAutomato()
 {
 
 
-	int numeroDeLinhas = 25;
+	int numeroDeLinhas = NUMERO_ESTADOS +2;
 	int numeroDeColunas = 176;
 
  	tabelaTransicao = (int **) calloc (numeroDeLinhas, sizeof(int*));
