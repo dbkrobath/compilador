@@ -156,9 +156,15 @@ void extrairTokens(FILE *programaFonte)
             lerProximoCaracter = 1;
         }
 
+<<<<<<< HEAD
 
 
 
+=======
+
+        proximoEstado = obterProximoEstado(estadoAtual, proximoCaracter, &tipoSaida);
+
+>>>>>>> a323a90ac805ca5ebccb1759cfa1e7943b61a9dd
 
         if(proximoEstado == 1)
         {

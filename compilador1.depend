@@ -3,40 +3,40 @@
 	<stdio.h>
 	<stdlib.h>
 
-1380149421 source:c:\users\diogo.krobath\documents\github\compilador\main.c
+1380138300 source:c:\users\diogo.krobath\documents\github\compilador\main.c
 	<stdio.h>
 	<stdlib.h>
 	"constantes.h"
 	"lexico.h"
 
-1379992991 c:\users\diogo.krobath\documents\github\compilador\lexico.h
+1380138300 c:\users\diogo.krobath\documents\github\compilador\lexico.h
 	<stdio.h>
 	<string.h>
 	"automato.h"
 	"estruturas.h"
 	"constantes.h"
 
-1380081971 c:\users\diogo.krobath\documents\github\compilador\automato.h
+1380138300 c:\users\diogo.krobath\documents\github\compilador\automato.h
 	<stdio.h>
 	"automato.h"
 
-1380149278 source:c:\users\diogo.krobath\documents\github\compilador\automato.c
+1380138300 source:c:\users\diogo.krobath\documents\github\compilador\automato.c
 	"automato.h"
 
-1380152480 source:c:\users\diogo.krobath\documents\github\compilador\lexico.c
+1380160885 source:c:\users\diogo.krobath\documents\github\compilador\lexico.c
 	"lexico.h"
 	<string.h>
 
-1380152382 source:c:\users\diogo.krobath\documents\github\compilador\estruturas.c
+1380138300 source:c:\users\diogo.krobath\documents\github\compilador\estruturas.c
 	<stdio.h>
 	<ctype.h>
 	<stdlib.h>
 	"estruturas.h"
 	<string.h>
 
-1380066884 c:\users\diogo.krobath\documents\github\compilador\estruturas.h
+1380138300 c:\users\diogo.krobath\documents\github\compilador\estruturas.h
 
-1380127404 c:\users\diogo.krobath\documents\github\compilador\constantes.h
+1380138300 c:\users\diogo.krobath\documents\github\compilador\constantes.h
 
 1380138300 source:c:\users\diogo.krobath\documents\compilador\compilador-master\compilador-master\automato.c
 	"automato.h"
