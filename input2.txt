@@ -1,0 +1,31 @@
+/* Programa exemplo 1 */
+
+
+int main() {
+
+	
+
+	int a; 	//varasasa a
+ a b c d e
+	// var i
+	
+	
+	a=32;
+	
+
+
+	while(i < a) {
+		
+		i = i + 1;
+	
+	}
+
+
+
+	float b = 3.5	
+
+	string a = "teste de string"
+
+	return 0;
+
+}

@@ -56,8 +56,6 @@ int obterProximoEstado(int estadoAtual, char caracterLido, int *tipoSaida)
     else
         *tipoSaida = 0;
 
-    printf("\n tipo saida antes do retorno %d e estado atual %d",*tipoSaida,estadoAtual);
-
     return proximoEstado;
 
 }

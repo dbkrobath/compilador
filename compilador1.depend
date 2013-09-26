@@ -3,7 +3,7 @@
 	<stdio.h>
 	<stdlib.h>
 
-1379988623 source:c:\users\diogo.krobath\documents\github\compilador\main.c
+1380149421 source:c:\users\diogo.krobath\documents\github\compilador\main.c
 	<stdio.h>
 	<stdlib.h>
 	"constantes.h"
@@ -20,14 +20,14 @@
 	<stdio.h>
 	"automato.h"
 
-1380147459 source:c:\users\diogo.krobath\documents\github\compilador\automato.c
+1380149278 source:c:\users\diogo.krobath\documents\github\compilador\automato.c
 	"automato.h"
 
-1380147683 source:c:\users\diogo.krobath\documents\github\compilador\lexico.c
+1380152480 source:c:\users\diogo.krobath\documents\github\compilador\lexico.c
 	"lexico.h"
 	<string.h>
 
-1380126500 source:c:\users\diogo.krobath\documents\github\compilador\estruturas.c
+1380152382 source:c:\users\diogo.krobath\documents\github\compilador\estruturas.c
 	<stdio.h>
 	<ctype.h>
 	<stdlib.h>
@@ -37,4 +37,39 @@
 1380066884 c:\users\diogo.krobath\documents\github\compilador\estruturas.h
 
 1380127404 c:\users\diogo.krobath\documents\github\compilador\constantes.h
+
+1380138300 source:c:\users\diogo.krobath\documents\compilador\compilador-master\compilador-master\automato.c
+	"automato.h"
+
+1380138300 c:\users\diogo.krobath\documents\compilador\compilador-master\compilador-master\automato.h
+	<stdio.h>
+	"automato.h"
+
+1380138300 source:c:\users\diogo.krobath\documents\compilador\compilador-master\compilador-master\estruturas.c
+	<stdio.h>
+	<ctype.h>
+	<stdlib.h>
+	"estruturas.h"
+	<string.h>
+
+1380138300 c:\users\diogo.krobath\documents\compilador\compilador-master\compilador-master\estruturas.h
+
+1380159077 source:c:\users\diogo.krobath\documents\compilador\compilador-master\compilador-master\lexico.c
+	"lexico.h"
+	<string.h>
+
+1380138300 c:\users\diogo.krobath\documents\compilador\compilador-master\compilador-master\lexico.h
+	<stdio.h>
+	<string.h>
+	"automato.h"
+	"estruturas.h"
+	"constantes.h"
+
+1380138300 c:\users\diogo.krobath\documents\compilador\compilador-master\compilador-master\constantes.h
+
+1380138300 source:c:\users\diogo.krobath\documents\compilador\compilador-master\compilador-master\main.c
+	<stdio.h>
+	<stdlib.h>
+	"constantes.h"
+	"lexico.h"
 

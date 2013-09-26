@@ -15,7 +15,10 @@ int main()
         exit(0);
     }
 
+
     inicializarLexico();
+
     extrairTokens(programaFonte);
+
     return 0;
 }

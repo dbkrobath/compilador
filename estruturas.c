@@ -85,6 +85,8 @@ void insereToken(int tipo, char *valor, token **T)
 {
     token *taux, *pLoop;
 
+
+
     if ( *T != NULL) {
         pLoop = *T;
         while( pLoop->proxToken != NULL){
@@ -92,13 +94,20 @@ void insereToken(int tipo, char *valor, token **T)
         }
     }
 
+
+
     taux = (token *) malloc (sizeof(token));
 
-    int tamanho = strlen(valor);
+    int tamanho = strlen(valor)+1;
+
+
+
     taux ->valor = (char*) malloc (tamanho * sizeof(char));
     strcpy (taux ->valor, valor);
     taux ->tipo = tipo;
     taux ->proxToken = NULL;
+
+
 
     if ( *T != NULL)
         pLoop->proxToken = taux;

@@ -1,31 +1,4 @@
-/* Programa exemplo 1 */
-
-
-int main() {
-
-	
-
-	int a; 	//var a
-	int i; 
-	// var i
-	
-	
-	a = 3;
-	
-
-
-	while(i < a) {
-		
-		i = i + 1;
-	
-	}
-
-
-
-	float b = 3.5	
-
-	string a = "teste de string"
-
-	return 0;
-
+int main(){
+	int a; //asas a b c d e f g
+	int a;
 }
