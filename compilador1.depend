@@ -3,7 +3,7 @@
 	<stdio.h>
 	<stdlib.h>
 
-1380222214 source:c:\users\diogo.krobath\documents\github\compilador\main.c
+1380238004 source:c:\users\diogo.krobath\documents\github\compilador\main.c
 	<stdio.h>
 	<stdlib.h>
 	"constantes.h"
@@ -20,7 +20,7 @@
 	<stdio.h>
 	"constantes.h"
 
-1380223491 source:c:\users\diogo.krobath\documents\github\compilador\automato.c
+1380228192 source:c:\users\diogo.krobath\documents\github\compilador\automato.c
 	"automato.h"
 
 1380223933 source:c:\users\diogo.krobath\documents\github\compilador\lexico.c
@@ -68,6 +68,41 @@
 1380138300 c:\users\diogo.krobath\documents\compilador\compilador-master\compilador-master\constantes.h
 
 1380138300 source:c:\users\diogo.krobath\documents\compilador\compilador-master\compilador-master\main.c
+	<stdio.h>
+	<stdlib.h>
+	"constantes.h"
+	"lexico.h"
+
+1380228192 source:c:\users\diogo.krobath\skydrive\documents\poli\5 quad\compiladores\entrega1\arquivos\lexico\automato.c
+	"automato.h"
+
+1380228106 c:\users\diogo.krobath\skydrive\documents\poli\5 quad\compiladores\entrega1\arquivos\lexico\automato.h
+	<stdio.h>
+	"constantes.h"
+
+1380228056 c:\users\diogo.krobath\skydrive\documents\poli\5 quad\compiladores\entrega1\arquivos\lexico\constantes.h
+
+1380223940 source:c:\users\diogo.krobath\skydrive\documents\poli\5 quad\compiladores\entrega1\arquivos\lexico\estruturas.c
+	<stdio.h>
+	<ctype.h>
+	<stdlib.h>
+	"estruturas.h"
+	<string.h>
+
+1380222991 c:\users\diogo.krobath\skydrive\documents\poli\5 quad\compiladores\entrega1\arquivos\lexico\estruturas.h
+
+1380223933 source:c:\users\diogo.krobath\skydrive\documents\poli\5 quad\compiladores\entrega1\arquivos\lexico\lexico.c
+	"lexico.h"
+	<string.h>
+
+1380221351 c:\users\diogo.krobath\skydrive\documents\poli\5 quad\compiladores\entrega1\arquivos\lexico\lexico.h
+	<stdio.h>
+	<string.h>
+	"automato.h"
+	"estruturas.h"
+	"constantes.h"
+
+1380238004 source:c:\users\diogo.krobath\skydrive\documents\poli\5 quad\compiladores\entrega1\arquivos\lexico\main.c
 	<stdio.h>
 	<stdlib.h>
 	"constantes.h"

@@ -8,7 +8,7 @@ int main()
 
     FILE *programaFonte;
 
-    programaFonte = fopen("input.txt","r");
+    programaFonte = fopen("entrada.txt","r");
     if(!programaFonte)
     {
         printf( "Erro na abertura do arquivo fonte");
