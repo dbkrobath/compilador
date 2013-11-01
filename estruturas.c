@@ -201,3 +201,49 @@ void populaTabelaPalavrasReservadas(noLista **palavraReservada) {
     fclose(entrada);
 }
 
+/*
+    Manipulacao da Pilha
+*/
+
+void inicializaPilha(pilhaEstados **P){
+    *P = NULL;
+}
+
+void empilhaEstado(int estado, pilhaEstados **P)
+{
+    pilhaEstados *paux, *pCopia;
+
+    pCopia = *P;
+
+    paux = (pilhaEstados *) malloc (sizeof(pilhaEstados));
+    paux ->estado = estado;
+    paux ->estadoAnterior = NULL;
+
+
+    if ( *P != NULL)
+        paux ->estadoAnterior = pCopia;
+
+
+    *P = paux;
+
+
+}
+
+int desempilhaEstado(pilhaEstados **P)
+{
+    pilhaEstados *paux;
+
+    paux = *P;
+
+    if(*P!=NULL)
+    {
+        int estado = paux->estado;
+        *P = paux->estadoAnterior;
+
+        return estado;
+    }
+
+    return -1;
+
+}
+

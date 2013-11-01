@@ -32,7 +32,7 @@ void inicializarLexico()
     inicializaLista(&NoString);
     inicializaToken(&TokenLista);
     populaTabelaPalavrasReservadas(&NoPalavraReservada);
-    inicializarAutomato();
+    inicializarAutomatoLex();
 
 }
 
@@ -180,9 +180,7 @@ token* retornarTokenEncontrado(char* tokenEncontrado, int tipo)
             break;
     }
 
-
 }
-
 
 /*
     Funcoes diversas

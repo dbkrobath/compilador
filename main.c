@@ -2,13 +2,14 @@
 #include <stdlib.h>
 #include "constantes.h"
 #include "lexico.h"
+#include "sintatico.h"
 
 int main()
 {
 
     FILE *programaFonte;
 
-    programaFonte = fopen("entrada.txt","r");
+    programaFonte = fopen("ape-entrada.txt","r");
     if(!programaFonte)
     {
         printf( "Erro na abertura do arquivo fonte");
@@ -31,7 +32,6 @@ int main()
 
         tokenLido = extraiProximoToken(programaFonte);
     }
-
 
     //apenas para imprimir o token to tipo NO_TOKENS
 
