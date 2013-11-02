@@ -17,9 +17,9 @@
 	"estruturas.h"
 	"constantes.h"
 
-1383353637 c:\users\diogo.krobath\documents\github\compilador\automato.h
+1383433104 c:\users\diogo.krobath\documents\github\compilador\automato.h
 
-1383354727 source:c:\users\diogo.krobath\documents\github\compilador\automato.c
+1383433083 source:c:\users\diogo.krobath\documents\github\compilador\automato.c
 	<stdio.h>
 	<ctype.h>
 	<stdlib.h>
@@ -117,10 +117,10 @@
 	<stdio.h>
 	"constantes.h"
 
-1383354839 c:\users\diogo.krobath\documents\github\compilador\sintatico.h
+1383367863 c:\users\diogo.krobath\documents\github\compilador\sintatico.h
 	"automato.h"
 
-1383356200 source:c:\users\diogo.krobath\documents\github\compilador\sintatico.c
+1383432876 source:c:\users\diogo.krobath\documents\github\compilador\sintatico.c
 	<stdio.h>
 	<ctype.h>
 	<stdlib.h>

@@ -31,7 +31,7 @@ typedef struct _listaChamadasSubMaquina{
 
 typedef struct _transicao{
     struct Estado* proximoEstado;
-    char* terminal;
+    char terminal[20];
 }Transicao;
 
 typedef struct _listaTransicao{
@@ -49,6 +49,8 @@ typedef struct _estado{
     ListaTransicao* listaTransicao;
     ChamadaSubMaquina* chamadaSubMaquina;
 }Estado;
+
+void inicializarEstado(Estado ** E, int numeroEstado, int estadoFinal, int estadoInicial);
 
 typedef struct _listaEstados{
     Estado* estado;

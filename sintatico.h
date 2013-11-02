@@ -10,6 +10,8 @@ void inicializarSintatico();
 
 void inicializarListaAutomatos(ListaAutomatos **lista);
 
+void adicionarListaAutomatos(Automato* A,ListaAutomatos **L);
+
 void carregarAutomatos(ListaAutomatos **lista);
 
 #endif // SINTATICO_H_INCLUDED

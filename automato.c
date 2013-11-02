@@ -19,15 +19,36 @@ void adicionarListaTransicao(Transicao* T,ListaTransicao **L)
         }
     }
 
+
+
     listaAux = (ListaTransicao *) malloc (sizeof(ListaTransicao));
+    listaAux ->transicao = (Transicao *) malloc (sizeof(Transicao));;
     listaAux ->transicao = T;
+    listaAux->prox = NULL;
 
 
     if ( *L != NULL)
         listaLoop->prox = listaAux;
     else
+    {
+        *L = (ListaTransicao *) malloc (sizeof(ListaTransicao));
         *L = listaAux;
+    }
+
 }
+
+void inicializarEstado(Estado ** E, int numeroEstado, int estadoFinal, int estadoInicial)
+{
+    *E = NULL;
+    *E = (Estado *) malloc (sizeof(Estado));
+
+    (*E)->estadoInicial = estadoInicial;
+    (*E)->estadoFinal = estadoFinal;
+    (*E)->estado = numeroEstado;
+    (*E)->listaTransicao = NULL;
+    (*E)->chamadaSubMaquina = NULL;
+}
+
 
 void inicializarListaEstados(ListaEstados **L)
 {
@@ -46,14 +67,20 @@ void adicionarListaEstados(Estado* E,ListaEstados **L)
         }
     }
 
-    listaAux = (ListaEstados *) malloc (sizeof(ListaEstados));
-    listaAux ->estado = E;
 
+    listaAux = (ListaEstados *) malloc (sizeof(ListaEstados));
+    listaAux ->estado = (Estado *) malloc (sizeof(Estado));
+    listaAux ->estado = E;
+    listaAux->prox = NULL;
 
     if ( *L != NULL)
         listaLoop->prox = listaAux;
     else
+    {
+        *L = (ListaEstados *) malloc (sizeof(ListaEstados));
         *L = listaAux;
+    }
+
 }
 
 void inicializarAutomato(Automato **A)
@@ -63,49 +90,73 @@ void inicializarAutomato(Automato **A)
 
 void printAutomato(Automato *A)
 {
-    Automato *Aux;
-
     Estado *estadoAtual;
-    Transicao *transicaoAtual;
+
+    Transicao *transicaoAtual = (Transicao *) malloc (sizeof(Transicao));
+    //transicaoAtual = NULL;
+
 
 
     if(A != NULL)
     {
-        Aux = A;
 
-        estadoAtual = Aux->estadoAtual;
+        ListaEstados *listaEstados = A->listaEstados;
+        estadoAtual = listaEstados->estado;
+
+        printf("\n Automato  %c ",*(A->ID));
 
         //Percorre todos os estados do automato
         while(estadoAtual!=NULL)
         {
 
-            printf("\n Estado  $d ",estadoAtual);
+
+            printf("\n Estado  %d ",estadoAtual->estado);
+
+            if(estadoAtual->estadoInicial==1)
+                printf("  - Estado Inicial ");
+
+            if(estadoAtual->estadoFinal==1)
+                printf("  - Estado Final ");
 
             if(estadoAtual->listaTransicao !=NULL){
 
-                transicaoAtual = estadoAtual->listaTransicao->transicao;
+
+                ListaTransicao *listaTransicao = estadoAtual->listaTransicao;
 
                 //Verifica as transicoes do estado
-                while(transicaoAtual!=NULL)
+                while(listaTransicao!=NULL)
                 {
-                    printf("\n Transicao %d com token %c",transicaoAtual->proximoEstado,transicaoAtual->terminal);
+                    transicaoAtual = listaTransicao->transicao;
 
-                    //transicaoAtual = estadoAtual->listaTransicao->prox;
+                    Estado *proximoEstado = transicaoAtual->proximoEstado;
+
+                    //int estadoFuturo = (transicaoAtual->proximoEstado)->estado;
+                    printf("\n Transicao para %d com token %s",(proximoEstado->estado),(transicaoAtual->terminal));
+
+                    listaTransicao = listaTransicao->prox;
                 }
 
-                if(estadoAtual->chamadaSubMaquina!= NULL)
-                {
-                    //printf("\n Chamada de submaquina %c ",estadoAtual->chamadaSubMaquina->proxAutomato->ID);
+            }
 
-                }
+            if(estadoAtual->chamadaSubMaquina!= NULL)
+            {
+                Automato *proximoAutomato = estadoAtual->chamadaSubMaquina->proxAutomato;
+                Estado *estadoRetorno = estadoAtual->chamadaSubMaquina->estadoRetorno;
+                printf("\n Chamada de submaquina %c, estado de retorno %d ",*(proximoAutomato->ID),estadoRetorno->estado);
+            }
 
+            if(listaEstados->prox != NULL)
+            {
+                listaEstados = listaEstados->prox;
+                estadoAtual = listaEstados->estado;
             }
             else
             {
                 estadoAtual = NULL;
             }
 
-            //estadoAtual = Aux->listaEstados->prox;
+
+
             printf("\n");
         }
     }
