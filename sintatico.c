@@ -1,12 +1,15 @@
+#include <stdio.h>
+#include <ctype.h>
+#include <stdlib.h>
 #include "sintatico.h"
-#include "automato.h"
+
 
 ListaAutomatos *listaAutomatos;
 
 void inicializarSintatico()
 {
     inicializarListaAutomatos(&listaAutomatos);
-    carregarAutomatos(&listaAutomatos)
+    //carregarAutomatos(&listaAutomatos);
 }
 
 void inicializarListaAutomatos(ListaAutomatos **L)
@@ -60,11 +63,13 @@ void carregarAutomatos(ListaAutomatos **L)
 
     estadoE0->estadoInicial = 1;
     estadoE1->estadoFinal = 1;
-    estadoE3->estadoFinal = 1
+    estadoE3->estadoFinal = 1;
 
-    ListaEstados* listaEstadosE = (ListaEstados *) malloc (sizeof(ListaEstados));
+    ListaEstados* listaEstadosE;
 
     inicializarEstado(&listaEstadosE);
+
+    listaEstadosE = (ListaEstados *) malloc (sizeof(ListaEstados));
 
     adicionarListaEstados(estadoE0,&listaEstadosE);
     adicionarListaEstados(estadoE1,&listaEstadosE);
@@ -74,8 +79,8 @@ void carregarAutomatos(ListaAutomatos **L)
     automatoE->listaEstados = listaEstadosE;
 
     Transicao* transicaoE0 = (Transicao *) malloc (sizeof(Transicao));
-    transicao1->proximoEstado = estadoE2;
-    transicao1->terminal = "+";
+    transicaoE0->proximoEstado = estadoE2;
+    transicaoE0->terminal = "+";
 
     ListaTransicao* listaTransicaoE = (ListaTransicao *) malloc (sizeof(ListaTransicao));
 
@@ -106,12 +111,12 @@ void carregarAutomatos(ListaAutomatos **L)
     estadoT5->estadoFinal = 1;
 
     Transicao* transicaoT00 = (Transicao *) malloc (sizeof(Transicao));
-    transicao1->proximoEstado = estadoT1;
-    transicao1->terminal = "int";
+    transicaoT00->proximoEstado = estadoT1;
+    transicaoT00->terminal = "int";
 
     Transicao* transicaoT01 = (Transicao *) malloc (sizeof(Transicao));
-    transicao1->proximoEstado = estadoT2;
-    transicao1->terminal = "(";
+    transicaoT01->proximoEstado = estadoT2;
+    transicaoT01->terminal = "(";
 
     ListaTransicao* listaTransicaoT0 = (ListaTransicao *) malloc (sizeof(ListaTransicao));
     estadoT0->listaTransicao = listaTransicaoT0;
@@ -122,25 +127,24 @@ void carregarAutomatos(ListaAutomatos **L)
 
 
     Transicao* transicaoT10 = (Transicao *) malloc (sizeof(Transicao));
-    transicao1->proximoEstado = estadoT3;
-    transicao1->terminal = "*";
+    transicaoT10->proximoEstado = estadoT3;
+    transicaoT10->terminal = "*";
 
-    adicionarListaTransicao(transicaoT10,&listaTransicaoT1);
+
 
     ListaTransicao* listaTransicaoT1 = (ListaTransicao *) malloc (sizeof(ListaTransicao));
     estadoT1->listaTransicao = listaTransicaoT1;
 
+    adicionarListaTransicao(transicaoT10,&listaTransicaoT1);
+
     Transicao* transicaoT40 = (Transicao *) malloc (sizeof(Transicao));
-    transicao1->proximoEstado = estadoT5;
-    transicao1->terminal = ")";
+    transicaoT40->proximoEstado = estadoT5;
+    transicaoT40->terminal = ")";
 
     ListaTransicao* listaTransicaoT4 = (ListaTransicao *) malloc (sizeof(ListaTransicao));
     estadoT4->listaTransicao = listaTransicaoT4;
 
     adicionarListaTransicao(transicaoT40,&listaTransicaoT4);
-
-    ListaTransicao* listaTransicaoT1 = (ListaTransicao *) malloc (sizeof(ListaTransicao));
-    estadoT1->listaTransicao = listaTransicaoT1;
 
 
     ChamadaSubMaquina* chamadaT2 = (ChamadaSubMaquina *) malloc (sizeof(ChamadaSubMaquina));

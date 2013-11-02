@@ -1,6 +1,6 @@
 #ifndef SINTATICO_H_INCLUDED
 #define SINTATICO_H_INCLUDED
-
+#include "automato.h"
 typedef struct _listaAutomatos{
     Automato* automato;
     struct _listaAutomatos *prox;

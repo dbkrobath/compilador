@@ -3,27 +3,29 @@
 	<stdio.h>
 	<stdlib.h>
 
-1383279953 source:c:\users\diogo.krobath\documents\github\compilador\main.c
+1383355374 source:c:\users\diogo.krobath\documents\github\compilador\main.c
 	<stdio.h>
 	<stdlib.h>
 	"constantes.h"
 	"lexico.h"
+	"sintatico.h"
 
-1380224951 c:\users\diogo.krobath\documents\github\compilador\lexico.h
+1383283473 c:\users\diogo.krobath\documents\github\compilador\lexico.h
 	<stdio.h>
 	<string.h>
-	"automato.h"
+	"automatoLex.h"
 	"estruturas.h"
 	"constantes.h"
 
-1380231706 c:\users\diogo.krobath\documents\github\compilador\automato.h
-	<stdio.h>
-	"constantes.h"
+1383353637 c:\users\diogo.krobath\documents\github\compilador\automato.h
 
-1380231792 source:c:\users\diogo.krobath\documents\github\compilador\automato.c
+1383354727 source:c:\users\diogo.krobath\documents\github\compilador\automato.c
+	<stdio.h>
+	<ctype.h>
+	<stdlib.h>
 	"automato.h"
 
-1380227533 source:c:\users\diogo.krobath\documents\github\compilador\lexico.c
+1383283771 source:c:\users\diogo.krobath\documents\github\compilador\lexico.c
 	"lexico.h"
 	<string.h>
 
@@ -108,10 +110,19 @@
 	"constantes.h"
 	"lexico.h"
 
-1383283461 source:c:\users\diogo.krobath\documents\github\compilador\automatolex.c
+1383283743 source:c:\users\diogo.krobath\documents\github\compilador\automatolex.c
 	"automatoLex.h"
 
-1380231706 c:\users\diogo.krobath\documents\github\compilador\automatolex.h
+1383283756 c:\users\diogo.krobath\documents\github\compilador\automatolex.h
 	<stdio.h>
 	"constantes.h"
+
+1383354839 c:\users\diogo.krobath\documents\github\compilador\sintatico.h
+	"automato.h"
+
+1383356200 source:c:\users\diogo.krobath\documents\github\compilador\sintatico.c
+	<stdio.h>
+	<ctype.h>
+	<stdlib.h>
+	"sintatico.h"
 

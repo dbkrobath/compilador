@@ -50,8 +50,8 @@ void adicionarListaEstados(Estado* E,ListaEstados **L)
     listaAux ->estado = E;
 
 
-    if ( *listaAux != NULL)
-        listaLoop->prox = paux;
+    if ( *L != NULL)
+        listaLoop->prox = listaAux;
     else
         *L = listaAux;
 }
@@ -64,13 +64,14 @@ void inicializarAutomato(Automato **A)
 void printAutomato(Automato *A)
 {
     Automato *Aux;
+
     Estado *estadoAtual;
     Transicao *transicaoAtual;
 
 
-    if(*A != NULL)
+    if(A != NULL)
     {
-        Aux = *A;
+        Aux = A;
 
         estadoAtual = Aux->estadoAtual;
 
@@ -87,14 +88,14 @@ void printAutomato(Automato *A)
                 //Verifica as transicoes do estado
                 while(transicaoAtual!=NULL)
                 {
-                    printf("\n Transicao %d com token %c",transicaoAtual->proximoEstado,transicaoAtual->tokenTransicao->valor);
+                    printf("\n Transicao %d com token %c",transicaoAtual->proximoEstado,transicaoAtual->terminal);
 
-                    transicaoAtual = ListaTransicao->prox;
+                    //transicaoAtual = estadoAtual->listaTransicao->prox;
                 }
 
                 if(estadoAtual->chamadaSubMaquina!= NULL)
                 {
-                    printf("\n Chamada de submaquina %c ",estadoAtual->chamadaSubMaquina->proxAutomato->ID);
+                    //printf("\n Chamada de submaquina %c ",estadoAtual->chamadaSubMaquina->proxAutomato->ID);
 
                 }
 
@@ -104,7 +105,7 @@ void printAutomato(Automato *A)
                 estadoAtual = NULL;
             }
 
-            estadoAtual = Aux->listaEstados->prox;
+            //estadoAtual = Aux->listaEstados->prox;
             printf("\n");
         }
     }

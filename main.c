@@ -17,6 +17,7 @@ int main()
     }
 
     inicializarLexico();
+    inicializarSintatico();
 
     token* tokenLido;
 

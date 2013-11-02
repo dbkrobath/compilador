@@ -5,13 +5,10 @@
 
 
 
-typedef struct {} Estado;
-typedef struct {} ListaEstados;
-
 typedef struct _automato{
     char* ID;
-    Estado* estadoAtual;
-    ListaEstados* listaEstados;
+    struct Estado* estadoAtual;
+    struct ListaEstados* listaEstados;
 } Automato;
 
 void inicializarAutomato(Automato **A);
@@ -20,20 +17,20 @@ void printAutomato(Automato* A);
 
 
 typedef struct _chamadaSubMaquina{
-    Automato* proxAutomato;
-    Estado* estadoRetorno;
+    struct Automato* proxAutomato;
+    struct Estado* estadoRetorno;
 }ChamadaSubMaquina;
 
 
 typedef struct _listaChamadasSubMaquina{
 
-    ChamadaSubMaquina* chamadaSubMaquina;
+    struct ChamadaSubMaquina* chamadaSubMaquina;
     struct _listaChamadasSubMaquina *prox;
 
 }ListaChamadasSubMaquina;
 
 typedef struct _transicao{
-    Estado* proximoEstado;
+    struct Estado* proximoEstado;
     char* terminal;
 }Transicao;
 
@@ -45,18 +42,18 @@ typedef struct _listaTransicao{
 void inicializarListaTransicao(ListaTransicao **L);
 void adicionarListaTransicao(Transicao* T,ListaTransicao **L);
 
-struct Estado{
+typedef struct _estado{
     int estado;
     int estadoFinal;
     int estadoInicial;
     ListaTransicao* listaTransicao;
     ChamadaSubMaquina* chamadaSubMaquina;
-};
+}Estado;
 
-struct ListaEstados{
+typedef struct _listaEstados{
     Estado* estado;
-    ListaEstados *prox;
-};
+    struct _listaEstados *prox;
+}ListaEstados;
 
 void inicializarListaEstados(ListaEstados **L);
 void adicionarListaEstados(Estado* E,ListaEstados **L);
