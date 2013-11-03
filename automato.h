@@ -8,7 +8,8 @@
 
 
 typedef struct _automato{
-    char* ID;
+    char ID[40];
+    char XML_File_Name[200];
     struct Estado* estadoAtual;
     struct ListaEstados* listaEstados;
 } Automato;
@@ -62,6 +63,7 @@ typedef struct _listaEstados{
 void inicializarListaEstados(ListaEstados **L);
 void adicionarListaEstados(Estado* E,ListaEstados **L);
 Estado* estadoInicial(Automato *a);
+Estado* buscarEstadoPorNumero(ListaEstados *listaEstados,int numero);
 
 
 

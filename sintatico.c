@@ -19,7 +19,9 @@ void inicializarSintatico()
     inicializarEstado(&estadoEmUso,0,0,1);
     inicializaPilha(&pilhaEstados);
 
-    carregarAutomatos(&listaAutomatos);
+
+    //carregarAutomatos(&listaAutomatos);
+    carregarAutomatosJFLAP(&listaAutomatos);
 
     //Extrai o primeiro automato da lista
     automatoEmUso = listaAutomatos->automato;
@@ -202,6 +204,260 @@ void enviaTokenSintatico(token *token)
 void inicializarListaAutomatos(ListaAutomatos **L)
 {
     *L = NULL;
+
+    Automato *automatoT = (Automato *) malloc (sizeof(Automato));
+
+    strcpy(automatoT->ID,"T");
+    automatoT->listaEstados = NULL;
+    strcpy(automatoT->XML_File_Name,"automatoT.xml");
+
+
+    Automato *automatoE = NULL;
+
+    automatoE = (Automato *) malloc (sizeof(Automato));
+
+    strcpy(automatoE->ID,"E");
+    automatoE->listaEstados = NULL;
+    strcpy(automatoE->XML_File_Name,"automatoE.xml");
+
+    adicionarListaAutomatos(automatoE,L);
+    adicionarListaAutomatos(automatoT,L);
+
+
+}
+
+
+void carregarAutomatosJFLAP(ListaAutomatos **listaAutomatos)
+{
+    ListaAutomatos *lAux;
+    lAux = *listaAutomatos;
+
+    while(lAux!=NULL)
+    {
+        printf("\n\n Arquivo do automato : %s ",lAux->automato->XML_File_Name);
+
+
+
+        int lendoEstados = 0;
+            int estadoNum = 0;
+            int estadoInicial= 0;
+            int estadoFinal= 0;
+
+        int lendoTransicoes = 0;
+            int from = 0;
+            int fromNum = 0;
+            int to = 0;
+            int toNum = 0;
+            int read = 0;
+            char readTerminal[20];
+
+
+        ListaEstados *listaEstados;
+
+
+        inicializaLista(&listaEstados);
+
+
+        char *fname = lAux->automato->XML_File_Name;
+        //strcpy(fname,);
+
+        char tag[MaxStr], contents[MaxStr], tagname[MaxStr], attrname[MaxStr], value[MaxStr];
+
+        float x1, y1, z1, x2, y2, z2, t0, t1;
+        int linum=0;
+        FILE *infile=0, *outfile=0;
+
+        infile = fopen(fname,"r");
+        if (infile==0) {printf("Error: Cannot open input file '%s'.\n",fname); exit(1);}
+        xml_parse( infile, tag, contents, MaxStr, &linum );
+        while (tag[0]!='\0')
+        {
+            xml_grab_tag_name( tag, tagname, MaxStr );	/* Get tag name. */
+
+            /* Add your application code here to accept tag-name, such as: */
+            //printf("Tag name = '%s'\n", tagname );
+
+            if(strcmp(tagname,"state")==0)
+            {
+                lendoEstados = 1;
+
+                //printf("Tag name comparaao = '%s'\n", tagname );
+            }
+
+            if((lendoEstados==1)&&(strcmp(tagname,"initial")==0))
+            {
+                estadoInicial = 1;
+
+                //printf("Tag name comparaao = '%s'\n", tagname );
+            }
+
+            if((lendoEstados==1)&&(strcmp(tagname,"final")==0))
+            {
+                estadoFinal = 1;
+
+                //printf("Tag name comparaao = '%s'\n", tagname );
+            }
+
+            if((lendoEstados==1)&&(strcmp(tagname,"/state")==0))
+            {
+                Estado *novoEstado;
+                inicializarEstado(&novoEstado,estadoNum,estadoFinal,estadoInicial);
+                adicionarListaEstados(novoEstado,&listaEstados);
+
+                printf("\n Criou estado %d, estado inicial %d, estado final %d",novoEstado->estado,novoEstado->estadoInicial,novoEstado->estadoFinal);
+
+                lendoEstados = 0;
+                estadoNum = 0;
+                estadoInicial = 0;
+                estadoFinal = 0;
+
+
+                //printf("Tag name comparaao = '%s'\n", tagname );
+            }
+
+            if(strcmp(tagname,"transition")==0)
+            {
+                lendoTransicoes = 1;
+
+                //printf("Tag name comparaao = '%s'\n", tagname );
+            }
+
+            if((lendoTransicoes==1)&&(strcmp(tagname,"from")==0))
+            {
+                from = 1;
+            }
+
+            if((lendoTransicoes==1)&&(strcmp(tagname,"/from")==0))
+            {
+                from = 0;
+            }
+
+            if((lendoTransicoes==1)&&(strcmp(tagname,"to")==0))
+            {
+                to = 1;
+            }
+
+            if((lendoTransicoes==1)&&(strcmp(tagname,"/to")==0))
+            {
+                to = 0;
+            }
+
+            if((lendoTransicoes==1)&&(strcmp(tagname,"read")==0))
+            {
+                read = 1;
+            }
+
+            if((lendoTransicoes==1)&&(strcmp(tagname,"/read")==0))
+            {
+                read = 0;
+            }
+
+            if((lendoTransicoes==1)&&(strcmp(tagname,"/transition")==0))
+            {
+                lendoTransicoes = 0;
+
+                Estado *estadoFrom = buscarEstadoPorNumero(listaEstados,fromNum);
+                Estado *estadoTo = buscarEstadoPorNumero(listaEstados,toNum);
+
+                if(readTerminal[0]=='"')
+                {
+
+                    //Cria uma transicao
+                    Transicao* transicao = (Transicao *) malloc (sizeof(Transicao));
+                    transicao->proximoEstado = estadoTo;
+
+                    int i = 0;
+                    char terminalSemAspas[20] = "\0";
+
+                    for(i= 1;i<strlen(readTerminal)-1;i++)
+                    {
+                        terminalSemAspas[i-1] = readTerminal[i];
+                    }
+
+                    strcpy(transicao->terminal,terminalSemAspas);
+
+                    ListaTransicao *listaTransicao = estadoFrom->listaTransicao;
+
+                    adicionarListaTransicao(transicao,&listaTransicao);
+
+                    estadoFrom->listaTransicao = listaTransicao;
+
+                    printf("\n Criou transicao from %d to %d com o terminal %s ",estadoFrom->estado,estadoTo->estado,transicao->terminal);
+
+                }
+                else
+                {
+                    ChamadaSubMaquina* chamadaSubMaquina = (ChamadaSubMaquina *) malloc (sizeof(ChamadaSubMaquina));
+                    Automato *automatoAux = buscarAutomatoPorID(*listaAutomatos,readTerminal);
+                    if(automatoAux!=NULL)
+                    {
+                        chamadaSubMaquina->proxAutomato = automatoAux;
+                    }
+
+                    chamadaSubMaquina ->estadoRetorno = estadoTo;
+
+                    estadoFrom->chamadaSubMaquina = chamadaSubMaquina;
+
+                    printf("\n Criou chamada submaquina from %d para o automato %s com retorno em %d",estadoFrom->estado,automatoAux->ID,estadoTo->estado);
+
+                    //Cria uma chamada de submaquina
+
+                }
+
+
+
+
+
+
+
+                //printf("Tag name comparaao = '%s'\n", tagname );
+            }
+
+            xml_grab_attrib( tag, attrname, value, MaxStr );	/* Get any attributes within tag. */
+            while (value[0] != '\0')
+            {
+                /* Add application code here to accept attribute attrname and value, such as: */
+                //printf(" Attribute: %s = '%s'\n", attrname, value );
+
+               if((lendoEstados==1) && (strcmp(attrname,"id")==0))
+               {
+                    estadoNum = atoi(value);
+               }
+
+                xml_grab_attrib( tag, attrname, value, MaxStr );	 /* Get next attribute, if any. */
+            }
+
+            /* Add application code here to accept contents between tags, such as: */
+            //printf("\n Contents = '%s'\n", contents );
+
+            if(from == 1)
+            {
+                fromNum = atoi(contents);
+            }
+
+            if(to == 1)
+            {
+                toNum = atoi(contents);
+            }
+
+            if(read==1)
+            {
+                strcpy(readTerminal,contents);
+
+            }
+
+            xml_parse( infile, tag, contents, MaxStr, &linum );
+
+
+        }
+        fclose(infile);
+
+        Automato *automatoAux = buscarAutomatoPorID(*listaAutomatos,lAux->automato->ID);
+        automatoAux->listaEstados = listaEstados;
+
+        lAux = lAux->prox;
+    }
+
 }
 
 void carregarAutomatos(ListaAutomatos **L)
@@ -219,13 +475,6 @@ void carregarAutomatos(ListaAutomatos **L)
     */
 
 
-    Automato *automatoE = NULL;
-
-    automatoE = (Automato *) malloc (sizeof(Automato));
-
-    automatoE->ID = "E";
-    automatoE->listaEstados = NULL;
-
 
     /*
         T = "int" | "int" "*" T | "(" E ")".
@@ -241,11 +490,10 @@ void carregarAutomatos(ListaAutomatos **L)
 
     */
 
+    Automato *automatoT = buscarAutomatoPorID(*L,"T");
 
-    Automato *automatoT = (Automato *) malloc (sizeof(Automato));
+    Automato *automatoE = buscarAutomatoPorID(*L,"E");
 
-    automatoT->ID = "T";
-    automatoT->listaEstados = NULL;
 
     Estado* estadoE0;
     Estado* estadoE1;
@@ -398,8 +646,7 @@ void carregarAutomatos(ListaAutomatos **L)
     automatoT->listaEstados = listaEstadosT;
 
 
-    adicionarListaAutomatos(automatoE,&listaAutomatos);
-    adicionarListaAutomatos(automatoT,&listaAutomatos);
+
 
 }
 
@@ -482,7 +729,23 @@ PilhaEstados* desempilhaEstado(PilhaEstados **P)
 
 }
 
+Automato* buscarAutomatoPorID(ListaAutomatos *listaAutomatos,char ID[40])
+{
+    while(listaAutomatos!=NULL)
+    {
+        if(listaAutomatos->automato!=NULL)
+        {
+            if(strcmp(listaAutomatos->automato->ID,ID)==0)
+            {
+                return listaAutomatos->automato;
+            }
+        }
 
+        listaAutomatos = listaAutomatos->prox;
+    }
+
+    return NULL;
+}
 
 void semantico_tbd()
 {

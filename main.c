@@ -32,12 +32,8 @@ int main()
 
         //printf("\n\n  Tipo: %d",tokenLido->tipo);
 
-
         tokenLido = extraiProximoToken(programaFonte);
-
-
     }
-
 
     //apenas para imprimir o token to tipo NO_TOKENS
     enviaTokenSintatico(tokenLido);

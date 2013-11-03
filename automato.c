@@ -86,6 +86,7 @@ void adicionarListaEstados(Estado* E,ListaEstados **L)
 void inicializarAutomato(Automato **A)
 {
     *A = NULL;
+
 }
 
 void printAutomato(Automato *A)
@@ -103,7 +104,7 @@ void printAutomato(Automato *A)
         ListaEstados *listaEstados = A->listaEstados;
         estadoAtual = listaEstados->estado;
 
-        printf("\n Automato  %c ",*(A->ID));
+        printf("\n\n Automato  %c ",*(A->ID));
 
         //Percorre todos os estados do automato
         while(estadoAtual!=NULL)
@@ -180,5 +181,20 @@ Estado *estadoInicial(Automato *A)
         }
         return NULL;
     }
+    return NULL;
+}
+
+Estado* buscarEstadoPorNumero(ListaEstados *listaEstados,int numero)
+{
+
+    while(listaEstados!=NULL)
+    {
+        if(listaEstados->estado->estado==numero)
+        {
+            return listaEstados->estado;
+        }
+        listaEstados = listaEstados->prox;
+    }
+
     return NULL;
 }

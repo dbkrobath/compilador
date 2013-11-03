@@ -3,7 +3,7 @@
 	<stdio.h>
 	<stdlib.h>
 
-1383455958 source:c:\users\diogo.krobath\documents\github\compilador\main.c
+1383457128 source:c:\users\diogo.krobath\documents\github\compilador\main.c
 	<stdio.h>
 	<stdlib.h>
 	"constantes.h"
@@ -17,10 +17,10 @@
 	"estruturas.h"
 	"constantes.h"
 
-1383439594 c:\users\diogo.krobath\documents\github\compilador\automato.h
+1383469593 c:\users\diogo.krobath\documents\github\compilador\automato.h
 	"estruturas.h"
 
-1383439374 source:c:\users\diogo.krobath\documents\github\compilador\automato.c
+1383471695 source:c:\users\diogo.krobath\documents\github\compilador\automato.c
 	<stdio.h>
 	<ctype.h>
 	<stdlib.h>
@@ -118,13 +118,34 @@
 	<stdio.h>
 	"constantes.h"
 
-1383456345 c:\users\diogo.krobath\documents\github\compilador\sintatico.h
+1383467682 c:\users\diogo.krobath\documents\github\compilador\sintatico.h
 	"automato.h"
 	"constantes.h"
+	"xml_parse_lib/xml_parse_lib.h"
 
-1383456299 source:c:\users\diogo.krobath\documents\github\compilador\sintatico.c
+1383471588 source:c:\users\diogo.krobath\documents\github\compilador\sintatico.c
 	<stdio.h>
 	<ctype.h>
 	<stdlib.h>
 	"sintatico.h"
+
+1325482246 c:\users\diogo.krobath\documents\github\compilador\xml_parse_lib\xml_parse_lib.c
+	<stdlib.h>
+	<string.h>
+	"xml_parse_lib.h"
+
+1383459272 c:\users\diogo.krobath\documents\github\compilador\xml_parse_lib\xml_parse_lib.h
+	<stdio.h>
+	<stdlib.h>
+
+1165499938 source:c:\users\diogo.krobath\documents\github\compilador\xml_parse_lib\unit_convertors.c
+
+1325482246 source:c:\users\diogo.krobath\documents\github\compilador\xml_parse_lib\xml_parse_lib.c
+	<stdlib.h>
+	<string.h>
+	"xml_parse_lib.h"
+
+1165500998 source:c:\users\diogo.krobath\documents\github\compilador\xml_parse_lib\xml_xsd_checker.c
+	<stdio.h>
+	"xml_parse_lib.c"
 
