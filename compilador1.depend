@@ -3,7 +3,7 @@
 	<stdio.h>
 	<stdlib.h>
 
-1383439788 source:c:\users\diogo.krobath\documents\github\compilador\main.c
+1383455958 source:c:\users\diogo.krobath\documents\github\compilador\main.c
 	<stdio.h>
 	<stdlib.h>
 	"constantes.h"
@@ -118,10 +118,11 @@
 	<stdio.h>
 	"constantes.h"
 
-1383439716 c:\users\diogo.krobath\documents\github\compilador\sintatico.h
+1383456345 c:\users\diogo.krobath\documents\github\compilador\sintatico.h
 	"automato.h"
+	"constantes.h"
 
-1383439708 source:c:\users\diogo.krobath\documents\github\compilador\sintatico.c
+1383456299 source:c:\users\diogo.krobath\documents\github\compilador\sintatico.c
 	<stdio.h>
 	<ctype.h>
 	<stdlib.h>

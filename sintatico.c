@@ -10,6 +10,7 @@ Automato *automatoEmUso;
 Estado *estadoEmUso;
 PilhaEstados *pilhaEstados;
 
+int aceitouLinguagem = 0;
 
 void inicializarSintatico()
 {
@@ -40,56 +41,162 @@ void inicializarSintatico()
     }
 
 
-
-
 }
 
 void enviaTokenSintatico(token *token)
 {
-    printf("\n Estado em uso %d, Maquina em uso %c",estadoEmUso->estado,*(automatoEmUso->ID));
 
-    if((automatoEmUso!=NULL)&&(estadoEmUso!=NULL))
+    if(token->tipo==NO_TOKENS)
     {
-        //Verifica se existe uma chamada de submaquina na etapa corrente
-        if(estadoEmUso->chamadaSubMaquina!=NULL)
+        printf("\n\nNo tokens");
+
+        if(estadoEmUso->estadoFinal==1)
         {
+            printf("\n Estado final, não tem transicao para o token..., desempilha a pilha");
 
-            empilhaEstado(automatoEmUso,estadoEmUso,&pilhaEstados);
-            automatoEmUso = estadoEmUso->chamadaSubMaquina->proxAutomato;
-            estadoEmUso = estadoInicial(automatoEmUso);
+            PilhaEstados *pilhaEstadosAux = desempilhaEstado(&pilhaEstados);
 
-            printf("\n Chamada de submaquina para  %c",*(automatoEmUso->ID));
+            if(pilhaEstadosAux != NULL)
+            {
 
-            enviaTokenSintatico(token);
+                automatoEmUso = pilhaEstadosAux->automatoRetorno;
+                estadoEmUso = pilhaEstadosAux->estadoRetorno;
+
+                printf("\n Desempilha e volta para estado %d e automato %c",estadoEmUso->estado,*(automatoEmUso->ID));
+
+                enviaTokenSintatico(token);
+            }
+            else
+            {
+                aceitouLinguagem = 1;
+                printf("\n A pilha está vazia!!! ");
+            }
         }
         else
         {
-            ListaTransicao *listaTransicaoAux = estadoEmUso->listaTransicao;
+            aceitouLinguagem = -1;
+            printf("\n Linguagem invalida!!! ");
+        }
+    }
+    else
+    {
 
-            while(listaTransicaoAux!=NULL)
+        if((automatoEmUso!=NULL)&&(estadoEmUso!=NULL)&&(aceitouLinguagem >=0))
+        {
+            printf("\n\n Estado em uso %d, Maquina em uso %c",estadoEmUso->estado,*(automatoEmUso->ID));
+            //Verifica se existe uma chamada de submaquina na etapa corrente
+            if(estadoEmUso->chamadaSubMaquina!=NULL)
             {
-                Transicao *transicaoAux = listaTransicaoAux->transicao;
+                ChamadaSubMaquina *chamadaAux = estadoEmUso->chamadaSubMaquina;
+                Estado *estadoRetorno = chamadaAux->estadoRetorno;
 
-                if(strcmp(transicaoAux->terminal, token->valor) == 0)
+                empilhaEstado(automatoEmUso,estadoRetorno,&pilhaEstados);
+                automatoEmUso = estadoEmUso->chamadaSubMaquina->proxAutomato;
+                estadoEmUso = estadoInicial(automatoEmUso);
+
+                printf("\n Empilha o estado de retorno %d e chamada de submaquina para  %c",estadoRetorno->estado,*(automatoEmUso->ID));
+
+                enviaTokenSintatico(token);
+            }
+            else
+            {
+                ListaTransicao *listaTransicaoAux = estadoEmUso->listaTransicao;
+
+                if(listaTransicaoAux==NULL)
                 {
-                    estadoEmUso = transicaoAux->proximoEstado;
+                    if(estadoEmUso->estadoFinal==1)
+                    {
+                        printf("\n Estado final, não tem transicao para o token..., desempilha a pilha");
 
-                    printf("\n Transicao para %d com token %s",(estadoEmUso->estado),(transicaoAux->terminal));
+                        PilhaEstados *pilhaEstadosAux = desempilhaEstado(&pilhaEstados);
 
-                    listaTransicaoAux = NULL;
+                        if(pilhaEstadosAux != NULL)
+                        {
+
+                            automatoEmUso = pilhaEstadosAux->automatoRetorno;
+                            estadoEmUso = pilhaEstadosAux->estadoRetorno;
+
+                            printf("\n Desempilha e volta para estado %d e automato %c",estadoEmUso->estado,*(automatoEmUso->ID));
+
+                            enviaTokenSintatico(token);
+                        }
+                        else
+                        {
+                            aceitouLinguagem = 1;
+                            printf("\n A pilha está vazia!!! ");
+                        }
+                    }
+                    else
+                    {
+                        aceitouLinguagem = -1;
+                        printf("\n Linguagem invalida!!! ");
+                    }
                 }
                 else
                 {
-                    printf("\n Procura o proximo token");
-                    listaTransicaoAux = listaTransicaoAux->prox;
+                    while(listaTransicaoAux!=NULL)
+                    {
+                        Transicao *transicaoAux = listaTransicaoAux->transicao;
+
+                        printf("\n Compara %s com o token %s ",transicaoAux->terminal,token->valor);
+
+                        if(strcmp(transicaoAux->terminal, token->valor) == 0)
+                        {
+                            estadoEmUso = transicaoAux->proximoEstado;
+
+                            printf("\n Transicao para %d com token %s",(estadoEmUso->estado),(transicaoAux->terminal));
+
+                            listaTransicaoAux = NULL;
+                        }
+                        else
+                        {
+                            printf("\n Procura o proximo token");
+                            listaTransicaoAux = listaTransicaoAux->prox;
+
+                            if(listaTransicaoAux==NULL)
+                            {
+
+                                if(estadoEmUso->estadoFinal==1)
+                                {
+                                    printf("\n Estado final, não tem transicao para o token..., desempilha a pilha");
+
+                                    PilhaEstados *pilhaEstadosAux = desempilhaEstado(&pilhaEstados);
+
+                                    if(pilhaEstadosAux != NULL)
+                                    {
+
+                                        automatoEmUso = pilhaEstadosAux->automatoRetorno;
+                                        estadoEmUso = pilhaEstadosAux->estadoRetorno;
+
+                                        printf("\n Desempilha e volta para estado %d e automato %c",estadoEmUso->estado,*(automatoEmUso->ID));
+
+                                        enviaTokenSintatico(token);
+                                    }
+                                    else
+                                    {
+                                        aceitouLinguagem = 1;
+                                        printf("\n A pilha está vazia!!! ");
+                                    }
+                                }
+                                else
+                                {
+                                    aceitouLinguagem = -1;
+                                    printf("\n Linguagem invalida!!! ");
+                                }
+
+
+                            }
+                        }
+
+
+                    }
                 }
 
-
             }
+
         }
 
     }
-
 }
 
 void inicializarListaAutomatos(ListaAutomatos **L)

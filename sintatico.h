@@ -1,11 +1,14 @@
 #ifndef SINTATICO_H_INCLUDED
 #define SINTATICO_H_INCLUDED
 #include "automato.h"
+#include "constantes.h"
 
 typedef struct _listaAutomatos{
     Automato* automato;
     struct _listaAutomatos *prox;
 }ListaAutomatos;
+
+int aceitouLinguagem;
 
 void inicializarSintatico();
 
