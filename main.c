@@ -27,7 +27,7 @@ int main()
 
     while (tokenLido->tipo != NO_TOKENS)
     {
-        printf("\n \n Valor: %s",tokenLido->valor);
+        printf("\n \n Valor: %s   - Tipo: %d",tokenLido->valor,tokenLido->tipo);
         enviaTokenSintatico(tokenLido);
 
         //printf("\n\n  Tipo: %d",tokenLido->tipo);

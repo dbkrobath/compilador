@@ -1,0 +1,32 @@
+   program:
+	
+declare int fatorialrecursivo(int n) 
+
+  if (n <= 1) 
+    return 1;
+  else
+    return n * fatorialrecursivo(n-1);
+  endif
+
+enddeclare
+
+
+declare int fatorial_iterativo(int n)  
+  int fatorial = 1;
+
+  while (n > 0) 
+    fatorial = fatorial * n;
+    n = n - 1;
+  endwhile
+
+  return fatorial;
+enddeclare
+
+   execute:
+
+int fatorial10recursivo;
+int fatorial10iterativo;
+fatorial10recursivo = fatorialrecursivo(10);
+fatorial10iterativo = fatorialiterativo(10);
+
+   endprogram

@@ -104,7 +104,7 @@ void printAutomato(Automato *A)
         ListaEstados *listaEstados = A->listaEstados;
         estadoAtual = listaEstados->estado;
 
-        printf("\n\n Automato  %c ",*(A->ID));
+        printf("\n\n Automato  %s ",(A->ID));
 
         //Percorre todos os estados do automato
         while(estadoAtual!=NULL)
@@ -143,7 +143,7 @@ void printAutomato(Automato *A)
             {
                 Automato *proximoAutomato = estadoAtual->chamadaSubMaquina->proxAutomato;
                 Estado *estadoRetorno = estadoAtual->chamadaSubMaquina->estadoRetorno;
-                printf("\n Chamada de submaquina %c, estado de retorno %d ",*(proximoAutomato->ID),estadoRetorno->estado);
+                printf("\n Chamada de submaquina %s, estado de retorno %d ",(proximoAutomato->ID),estadoRetorno->estado);
             }
 
             if(listaEstados->prox != NULL)

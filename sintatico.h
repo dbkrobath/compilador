@@ -42,4 +42,8 @@ void enviaTokenSintatico(token *token);
 
 Automato* buscarAutomatoPorID(ListaAutomatos *listaAutomatos,char ID[40]);
 
+char *tipoParaStringSintatica(int tipo);
+
+char *palavraReservadaParaStringSintatica(char* palavraReservada);
+
 #endif // SINTATICO_H_INCLUDED

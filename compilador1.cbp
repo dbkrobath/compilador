@@ -61,6 +61,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="sintatico.h" />
+		<Unit filename="xml_parse_lib/xml_parse_lib.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="xml_parse_lib/xml_parse_lib.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />

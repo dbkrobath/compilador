@@ -19,7 +19,6 @@ void inicializarSintatico()
     inicializarEstado(&estadoEmUso,0,0,1);
     inicializaPilha(&pilhaEstados);
 
-
     //carregarAutomatos(&listaAutomatos);
     carregarAutomatosJFLAP(&listaAutomatos);
 
@@ -85,116 +84,141 @@ void enviaTokenSintatico(token *token)
 
         if((automatoEmUso!=NULL)&&(estadoEmUso!=NULL)&&(aceitouLinguagem >=0))
         {
-            printf("\n\n Estado em uso %d, Maquina em uso %c",estadoEmUso->estado,*(automatoEmUso->ID));
-            //Verifica se existe uma chamada de submaquina na etapa corrente
-            if(estadoEmUso->chamadaSubMaquina!=NULL)
+            printf("\n\n Estado em uso %d, Maquina em uso %s",estadoEmUso->estado,(automatoEmUso->ID));
+
+
+            ListaTransicao *listaTransicaoAux = estadoEmUso->listaTransicao;
+
+            if(listaTransicaoAux==NULL)
             {
-                ChamadaSubMaquina *chamadaAux = estadoEmUso->chamadaSubMaquina;
-                Estado *estadoRetorno = chamadaAux->estadoRetorno;
-
-                empilhaEstado(automatoEmUso,estadoRetorno,&pilhaEstados);
-                automatoEmUso = estadoEmUso->chamadaSubMaquina->proxAutomato;
-                estadoEmUso = estadoInicial(automatoEmUso);
-
-                printf("\n Empilha o estado de retorno %d e chamada de submaquina para  %c",estadoRetorno->estado,*(automatoEmUso->ID));
-
-                enviaTokenSintatico(token);
-            }
-            else
-            {
-                ListaTransicao *listaTransicaoAux = estadoEmUso->listaTransicao;
-
-                if(listaTransicaoAux==NULL)
+                if(estadoEmUso->estadoFinal==1)
                 {
-                    if(estadoEmUso->estadoFinal==1)
+                    printf("\n Estado final, não tem transicao para o token..., desempilha a pilha");
+
+                    PilhaEstados *pilhaEstadosAux = desempilhaEstado(&pilhaEstados);
+
+                    if(pilhaEstadosAux != NULL)
                     {
-                        printf("\n Estado final, não tem transicao para o token..., desempilha a pilha");
 
-                        PilhaEstados *pilhaEstadosAux = desempilhaEstado(&pilhaEstados);
+                        automatoEmUso = pilhaEstadosAux->automatoRetorno;
+                        estadoEmUso = pilhaEstadosAux->estadoRetorno;
 
-                        if(pilhaEstadosAux != NULL)
-                        {
+                        printf("\n Desempilha e volta para estado %d e automato %c",estadoEmUso->estado,*(automatoEmUso->ID));
 
-                            automatoEmUso = pilhaEstadosAux->automatoRetorno;
-                            estadoEmUso = pilhaEstadosAux->estadoRetorno;
+                        enviaTokenSintatico(token);
+                    }
+                    else
+                    {
+                        aceitouLinguagem = 1;
+                        printf("\n A pilha está vazia!!! ");
+                    }
+                }
+                else
+                {
 
-                            printf("\n Desempilha e volta para estado %d e automato %c",estadoEmUso->estado,*(automatoEmUso->ID));
+                    //Verifica se existe uma chamada de submaquina na etapa corrente
+                    if(estadoEmUso->chamadaSubMaquina!=NULL)
+                    {
+                        ChamadaSubMaquina *chamadaAux = estadoEmUso->chamadaSubMaquina;
+                        Estado *estadoRetorno = chamadaAux->estadoRetorno;
 
-                            enviaTokenSintatico(token);
-                        }
-                        else
-                        {
-                            aceitouLinguagem = 1;
-                            printf("\n A pilha está vazia!!! ");
-                        }
+                        empilhaEstado(automatoEmUso,estadoRetorno,&pilhaEstados);
+                        automatoEmUso = estadoEmUso->chamadaSubMaquina->proxAutomato;
+                        estadoEmUso = estadoInicial(automatoEmUso);
+
+                        printf("\n Empilha o estado de retorno %d e chamada de submaquina para  %c",estadoRetorno->estado,*(automatoEmUso->ID));
+
+                        enviaTokenSintatico(token);
+
                     }
                     else
                     {
                         aceitouLinguagem = -1;
                         printf("\n Linguagem invalida!!! ");
                     }
+
                 }
-                else
+            }
+            else
+            {
+                while(listaTransicaoAux!=NULL)
                 {
-                    while(listaTransicaoAux!=NULL)
+                    Transicao *transicaoAux = listaTransicaoAux->transicao;
+
+                    char valorTerminal[20] = "\0";
+
+                    if(token->tipo==PALAVRARESERVADA)
                     {
-                        Transicao *transicaoAux = listaTransicaoAux->transicao;
+                        strcpy(valorTerminal,palavraReservadaParaStringSintatica(token->valor));
 
-                        printf("\n Compara %s com o token %s ",transicaoAux->terminal,token->valor);
+                    }
+                    else if(token->tipo==DELIMITADOR)
+                    {
+                        strcpy(valorTerminal,token->valor);
+                    }
+                    else if(token->tipo==OPERADOR)
+                    {
+                        strcpy(valorTerminal,token->valor);
+                    }
+                    else
+                    {
+                        strcpy(valorTerminal,tipoParaStringSintatica(token->tipo));
+                    }
 
-                        if(strcmp(transicaoAux->terminal, token->valor) == 0)
+
+                    printf("\n Compara %s com o token %s ",transicaoAux->terminal,valorTerminal);
+
+                    if(strcmp(transicaoAux->terminal, valorTerminal) == 0)
+                    {
+                        estadoEmUso = transicaoAux->proximoEstado;
+
+                        printf("\n Transicao para %d com token %s",(estadoEmUso->estado),(transicaoAux->terminal));
+
+                        listaTransicaoAux = NULL;
+                    }
+                    else
+                    {
+                        printf("\n Procura o proximo token");
+                        listaTransicaoAux = listaTransicaoAux->prox;
+
+                        if(listaTransicaoAux==NULL)
                         {
-                            estadoEmUso = transicaoAux->proximoEstado;
 
-                            printf("\n Transicao para %d com token %s",(estadoEmUso->estado),(transicaoAux->terminal));
-
-                            listaTransicaoAux = NULL;
-                        }
-                        else
-                        {
-                            printf("\n Procura o proximo token");
-                            listaTransicaoAux = listaTransicaoAux->prox;
-
-                            if(listaTransicaoAux==NULL)
+                            if(estadoEmUso->estadoFinal==1)
                             {
+                                printf("\n Estado final, não tem transicao para o token..., desempilha a pilha");
 
-                                if(estadoEmUso->estadoFinal==1)
+                                PilhaEstados *pilhaEstadosAux = desempilhaEstado(&pilhaEstados);
+
+                                if(pilhaEstadosAux != NULL)
                                 {
-                                    printf("\n Estado final, não tem transicao para o token..., desempilha a pilha");
 
-                                    PilhaEstados *pilhaEstadosAux = desempilhaEstado(&pilhaEstados);
+                                    automatoEmUso = pilhaEstadosAux->automatoRetorno;
+                                    estadoEmUso = pilhaEstadosAux->estadoRetorno;
 
-                                    if(pilhaEstadosAux != NULL)
-                                    {
+                                    printf("\n Desempilha e volta para estado %d e automato %c",estadoEmUso->estado,*(automatoEmUso->ID));
 
-                                        automatoEmUso = pilhaEstadosAux->automatoRetorno;
-                                        estadoEmUso = pilhaEstadosAux->estadoRetorno;
-
-                                        printf("\n Desempilha e volta para estado %d e automato %c",estadoEmUso->estado,*(automatoEmUso->ID));
-
-                                        enviaTokenSintatico(token);
-                                    }
-                                    else
-                                    {
-                                        aceitouLinguagem = 1;
-                                        printf("\n A pilha está vazia!!! ");
-                                    }
+                                    enviaTokenSintatico(token);
                                 }
                                 else
                                 {
-                                    aceitouLinguagem = -1;
-                                    printf("\n Linguagem invalida!!! ");
+                                    aceitouLinguagem = 1;
+                                    printf("\n A pilha está vazia!!! ");
                                 }
-
+                            }
+                            else
+                            {
+                                aceitouLinguagem = -1;
+                                printf("\n Linguagem invalida!!! ");
 
                             }
                         }
-
-
                     }
-                }
 
+
+                }
             }
+
 
         }
 
@@ -204,22 +228,65 @@ void enviaTokenSintatico(token *token)
 void inicializarListaAutomatos(ListaAutomatos **L)
 {
     *L = NULL;
+/*
+    Automato *automatoPrograma = (Automato *) malloc (sizeof(Automato));
+
+    strcpy(automatoPrograma->ID,"programa");
+    automatoPrograma->listaEstados = NULL;
+    strcpy(automatoPrograma->XML_File_Name,"xml_maquinas\\programa.xml");
+
+    Automato *automatoExpressao = (Automato *) malloc (sizeof(Automato));
+
+    strcpy(automatoExpressao->ID,"expressao");
+    automatoExpressao->listaEstados = NULL;
+    strcpy(automatoExpressao->XML_File_Name,"xml_maquinas\\expressao.xml");
+
+
+    Automato *automatoComandos = (Automato *) malloc (sizeof(Automato));
+
+    strcpy(automatoComandos->ID,"comandos");
+    automatoComandos->listaEstados = NULL;
+    strcpy(automatoComandos->XML_File_Name,"xml_maquinas\\comandos.xml");
+
+
+    Automato *automatoTipo = (Automato *) malloc (sizeof(Automato));
+
+    strcpy(automatoTipo->ID,"tipo");
+    automatoTipo->listaEstados = NULL;
+    strcpy(automatoTipo->XML_File_Name,"xml_maquinas\\tipo.xml");
+
+    Automato *automatoOpMatematico = (Automato *) malloc (sizeof(Automato));
+
+    strcpy(automatoOpMatematico->ID,"operadores_matematicos");
+    automatoOpMatematico->listaEstados = NULL;
+    strcpy(automatoOpMatematico->XML_File_Name,"xml_maquinas\\operadores_matematicos.xml");
+
+    Automato *automatoOpComparacao = (Automato *) malloc (sizeof(Automato));
+
+    strcpy(automatoOpComparacao->ID,"operadores_comparacao");
+    automatoOpComparacao->listaEstados = NULL;
+    strcpy(automatoOpComparacao->XML_File_Name,"xml_maquinas\\operadores_comparacao.xml");
+*/
+    Automato *automatoE = (Automato *) malloc (sizeof(Automato));
+
+    strcpy(automatoE->ID,"E");
+    automatoE->listaEstados = NULL;
+    strcpy(automatoE->XML_File_Name,"xml_maquinas\\automatoE.xml");
 
     Automato *automatoT = (Automato *) malloc (sizeof(Automato));
 
     strcpy(automatoT->ID,"T");
     automatoT->listaEstados = NULL;
-    strcpy(automatoT->XML_File_Name,"automatoT.xml");
+    strcpy(automatoT->XML_File_Name,"xml_maquinas\\automatoT.xml");
 
-
-    Automato *automatoE = NULL;
-
-    automatoE = (Automato *) malloc (sizeof(Automato));
-
-    strcpy(automatoE->ID,"E");
-    automatoE->listaEstados = NULL;
-    strcpy(automatoE->XML_File_Name,"automatoE.xml");
-
+/*
+    adicionarListaAutomatos(automatoPrograma,L);
+    adicionarListaAutomatos(automatoExpressao,L);
+    adicionarListaAutomatos(automatoComandos,L);
+    adicionarListaAutomatos(automatoTipo,L);
+    adicionarListaAutomatos(automatoOpMatematico,L);
+    adicionarListaAutomatos(automatoOpComparacao,L);
+*/
     adicionarListaAutomatos(automatoE,L);
     adicionarListaAutomatos(automatoT,L);
 
@@ -745,6 +812,42 @@ Automato* buscarAutomatoPorID(ListaAutomatos *listaAutomatos,char ID[40])
     }
 
     return NULL;
+}
+
+char *tipoParaStringSintatica(int tipo)
+{
+    switch(tipo)
+    {
+        case IDENTIFICADOR:
+            return "identificador";
+            break;
+
+        case INTEIRO:
+            return "inteiro";
+            break;
+
+        case FLOAT:
+            return "float";
+            break;
+
+        case OPERADOR:
+            return "operador";
+            break;
+
+        case DELIMITADOR:
+            return "delimitador";
+            break;
+
+        case STRING:
+            return "string";
+            break;
+
+    }
+}
+
+char *palavraReservadaParaStringSintatica(char* palavraReservada)
+{
+    return palavraReservada;
 }
 
 void semantico_tbd()
