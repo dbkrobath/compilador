@@ -28,10 +28,12 @@ int main()
     while (tokenLido->tipo != NO_TOKENS)
     {
 
-        printf("\n\n  Tipo: %d",tokenLido->tipo);
+        //printf("\n\n  Tipo: %d",tokenLido->tipo);
         printf("\n Valor: %s",tokenLido->valor);
 
         tokenLido = extraiProximoToken(programaFonte);
+
+        enviaTokenSintatico(tokenLido);
     }
 
     //apenas para imprimir o token to tipo NO_TOKENS

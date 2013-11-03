@@ -1,6 +1,8 @@
 #ifndef AUTOMAO_H_INCLUDED
 #define AUTOMAO_H_INCLUDED
 
+#include "estruturas.h"
+
 //Submaquinas
 
 
@@ -59,6 +61,7 @@ typedef struct _listaEstados{
 
 void inicializarListaEstados(ListaEstados **L);
 void adicionarListaEstados(Estado* E,ListaEstados **L);
+Estado* estadoInicial(Automato *a);
 
 
 

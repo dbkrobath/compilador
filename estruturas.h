@@ -31,18 +31,7 @@ typedef struct _token{
 void inicializaToken(token **T);
 token* insereToken(int tipo, char *valor, token **T);
 
-/*
-    PILHA
-*/
 
-typedef struct _pilhaEstados{
-    int estado;
-    struct _pilhaEstados *estadoAnterior;
-}pilhaEstados;
-
-void inicializaPilha(pilhaEstados **);
-void empilhaEstado(int estado, pilhaEstados **P);
-int desempilhaEstado(pilhaEstados **P);
 
 
 #endif // ESTRUTURAS_H_INCLUDED

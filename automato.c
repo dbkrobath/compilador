@@ -163,3 +163,22 @@ void printAutomato(Automato *A)
 
 
 }
+
+Estado *estadoInicial(Automato *A)
+{
+    if(A!=NULL)
+    {
+        if(A->listaEstados!=NULL)
+        {
+            //Assume que o peimrio estado da lista de estados é o estado inicial
+            ListaEstados *lAux = A->listaEstados;
+
+
+
+            return lAux->estado;
+
+        }
+        return NULL;
+    }
+    return NULL;
+}

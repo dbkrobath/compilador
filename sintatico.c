@@ -6,12 +6,25 @@
 
 
 ListaAutomatos *listaAutomatos;
+Automato *automatoEmUso;
+Estado *estadoEmUso;
+PilhaEstados *pilhaEstados;
 
 
 void inicializarSintatico()
 {
     inicializarListaAutomatos(&listaAutomatos);
+    inicializarAutomato(&automatoEmUso);
+    inicializarEstado(&estadoEmUso,0,0,1);
+    inicializaPilha(&pilhaEstados);
+
     carregarAutomatos(&listaAutomatos);
+
+    //Extrai o primeiro automato da lista
+    automatoEmUso = listaAutomatos->automato;
+
+    //Extrai o primeiro estado do primeiro automato
+    estadoEmUso = estadoInicial(automatoEmUso);
 
 
     ListaAutomatos *lAux;
@@ -26,6 +39,56 @@ void inicializarSintatico()
         lAux = lAux ->prox;
     }
 
+
+
+
+}
+
+void enviaTokenSintatico(token *token)
+{
+    printf("\n Estado em uso %d, Maquina em uso %c",estadoEmUso->estado,*(automatoEmUso->ID));
+
+    if((automatoEmUso!=NULL)&&(estadoEmUso!=NULL))
+    {
+        //Verifica se existe uma chamada de submaquina na etapa corrente
+        if(estadoEmUso->chamadaSubMaquina!=NULL)
+        {
+
+            empilhaEstado(automatoEmUso,estadoEmUso,&pilhaEstados);
+            automatoEmUso = estadoEmUso->chamadaSubMaquina->proxAutomato;
+            estadoEmUso = estadoInicial(automatoEmUso);
+
+            printf("\n Chamada de submaquina para  %c",*(automatoEmUso->ID));
+
+            enviaTokenSintatico(token);
+        }
+        else
+        {
+            ListaTransicao *listaTransicaoAux = estadoEmUso->listaTransicao;
+
+            while(listaTransicaoAux!=NULL)
+            {
+                Transicao *transicaoAux = listaTransicaoAux->transicao;
+
+                if(strcmp(transicaoAux->terminal, token->valor) == 0)
+                {
+                    estadoEmUso = transicaoAux->proximoEstado;
+
+                    printf("\n Transicao para %d com token %s",(estadoEmUso->estado),(transicaoAux->terminal));
+
+                    listaTransicaoAux = NULL;
+                }
+                else
+                {
+                    printf("\n Procura o proximo token");
+                    listaTransicaoAux = listaTransicaoAux->prox;
+                }
+
+
+            }
+        }
+
+    }
 
 }
 
@@ -257,6 +320,62 @@ void adicionarListaAutomatos(Automato* A,ListaAutomatos **L)
         *L = listaAux;
     }
 }
+
+
+
+/*
+    Manipulacao da Pilha
+*/
+
+void inicializaPilha(PilhaEstados **P){
+    *P = NULL;
+}
+
+void empilhaEstado(Automato *automato, Estado *estado, PilhaEstados **P)
+{
+    PilhaEstados *paux, *pCopia;
+
+    pCopia = *P;
+
+    paux = (PilhaEstados *) malloc (sizeof(PilhaEstados));
+
+    paux ->estadoRetorno = (Estado *) malloc (sizeof(Estado));
+    paux ->estadoRetorno = estado;
+
+    paux ->automatoRetorno = (Automato *) malloc (sizeof(Automato));
+    paux ->automatoRetorno = automato;
+
+    paux ->estadoAnterior = NULL;
+
+
+    if ( *P != NULL)
+        paux ->estadoAnterior = pCopia;
+
+
+    *P = paux;
+
+
+}
+
+PilhaEstados* desempilhaEstado(PilhaEstados **P)
+{
+    PilhaEstados *paux;
+    inicializaPilha(&paux);
+    paux = (PilhaEstados *) malloc (sizeof(PilhaEstados));
+
+    paux = *P;
+
+    if(*P!=NULL)
+    {
+        *P = paux->estadoAnterior;
+        return paux;
+    }
+
+    return NULL;
+
+}
+
+
 
 void semantico_tbd()
 {
