@@ -15,6 +15,7 @@
   <state id="5" name="q5">
   </state>
   <state id="6" name="q6">
+    <final/>
   </state>
   <state id="7" name="q7">
   </state>
@@ -29,7 +30,6 @@
   <state id="12" name="q12">
   </state>
   <state id="13" name="q13">
-    <final/>
   </state>
   <state id="14" name="q14">
   </state>
@@ -89,23 +89,28 @@
     <read>"print"</read>
   </transition>
   <transition>
-    <from>1</from>
+    <from>0</from>
     <to>6</to>
+    <read>";"</read>
+  </transition>
+  <transition>
+    <from>1</from>
+    <to>7</to>
+    <read>"("</read>
+  </transition>
+  <transition>
+    <from>2</from>
+    <to>17</to>
     <read>"("</read>
   </transition>
   <transition>
     <from>2</from>
     <to>18</to>
-    <read>"("</read>
-  </transition>
-  <transition>
-    <from>2</from>
-    <to>19</to>
     <read>"["</read>
   </transition>
   <transition>
     <from>2</from>
-    <to>20</to>
+    <to>19</to>
     <read>"="</read>
   </transition>
   <transition>
@@ -120,78 +125,83 @@
   </transition>
   <transition>
     <from>5</from>
-    <to>7</to>
+    <to>10</to>
     <read>"("</read>
   </transition>
   <transition>
     <from>6</from>
+    <to>1</to>
+    <read>"if"</read>
+  </transition>
+  <transition>
+    <from>6</from>
+    <to>2</to>
+    <read>"identificador"</read>
+  </transition>
+  <transition>
+    <from>6</from>
+    <to>3</to>
+    <read>"while"</read>
+  </transition>
+  <transition>
+    <from>6</from>
+    <to>4</to>
+    <read>"scan"</read>
+  </transition>
+  <transition>
+    <from>6</from>
+    <to>5</to>
+    <read>"print"</read>
+  </transition>
+  <transition>
+    <from>6</from>
+    <to>6</to>
+    <read>";"</read>
+  </transition>
+  <transition>
+    <from>7</from>
     <to>8</to>
     <read>expressao</read>
   </transition>
   <transition>
-    <from>7</from>
-    <to>9</to>
-    <read>expressao</read>
-  </transition>
-  <transition>
     <from>8</from>
-    <to>10</to>
+    <to>9</to>
     <read>")"</read>
   </transition>
   <transition>
     <from>9</from>
     <to>11</to>
-    <read>")"</read>
-  </transition>
-  <transition>
-    <from>9</from>
-    <to>7</to>
-    <read>","</read>
+    <read>comandos</read>
   </transition>
   <transition>
     <from>10</from>
     <to>12</to>
-    <read>comandos</read>
+    <read>expressao</read>
   </transition>
   <transition>
     <from>11</from>
     <to>13</to>
-    <read>";"</read>
-  </transition>
-  <transition>
-    <from>12</from>
-    <to>13</to>
     <read>"endif"</read>
   </transition>
   <transition>
-    <from>12</from>
+    <from>11</from>
     <to>14</to>
     <read>"else"</read>
   </transition>
   <transition>
-    <from>13</from>
-    <to>1</to>
-    <read>"if"</read>
+    <from>12</from>
+    <to>13</to>
+    <read>")"</read>
+  </transition>
+  <transition>
+    <from>12</from>
+    <to>10</to>
+    <read>","</read>
   </transition>
   <transition>
     <from>13</from>
-    <to>2</to>
-    <read>"identificador"</read>
-  </transition>
-  <transition>
-    <from>13</from>
-    <to>3</to>
-    <read>"while"</read>
-  </transition>
-  <transition>
-    <from>13</from>
-    <to>4</to>
-    <read>"scan"</read>
-  </transition>
-  <transition>
-    <from>13</from>
-    <to>5</to>
-    <read>"print"</read>
+    <to>6</to>
+    <read>";"</read>
   </transition>
   <transition>
     <from>14</from>
@@ -205,38 +215,38 @@
   </transition>
   <transition>
     <from>16</from>
-    <to>17</to>
+    <to>20</to>
     <read>"identificador"</read>
   </transition>
   <transition>
     <from>17</from>
-    <to>11</to>
-    <read>")"</read>
-  </transition>
-  <transition>
-    <from>17</from>
-    <to>21</to>
-    <read>"["</read>
-  </transition>
-  <transition>
-    <from>18</from>
-    <to>9</to>
+    <to>12</to>
     <read>expressao</read>
   </transition>
   <transition>
-    <from>18</from>
-    <to>11</to>
+    <from>17</from>
+    <to>13</to>
     <read>")"</read>
   </transition>
   <transition>
+    <from>18</from>
+    <to>23</to>
+    <read>expressao</read>
+  </transition>
+  <transition>
     <from>19</from>
-    <to>24</to>
+    <to>13</to>
     <read>expressao</read>
   </transition>
   <transition>
     <from>20</from>
-    <to>11</to>
-    <read>expressao</read>
+    <to>13</to>
+    <read>")"</read>
+  </transition>
+  <transition>
+    <from>20</from>
+    <to>21</to>
+    <read>"["</read>
   </transition>
   <transition>
     <from>21</from>
@@ -245,22 +255,22 @@
   </transition>
   <transition>
     <from>22</from>
-    <to>23</to>
+    <to>24</to>
     <read>"]"</read>
   </transition>
   <transition>
     <from>23</from>
-    <to>11</to>
-    <read>")"</read>
-  </transition>
-  <transition>
-    <from>24</from>
     <to>25</to>
     <read>"]"</read>
   </transition>
   <transition>
+    <from>24</from>
+    <to>13</to>
+    <read>")"</read>
+  </transition>
+  <transition>
     <from>25</from>
-    <to>20</to>
+    <to>19</to>
     <read>"="</read>
   </transition>
   <transition>

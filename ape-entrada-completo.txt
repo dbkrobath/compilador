@@ -8,7 +8,7 @@ declare int fatorialrecursivo(int n)
     resposta = 1;
   else
     resposta = n * fatorialrecursivo(n-1);
-  endif;
+  endif
 
   return resposta;
 
@@ -23,7 +23,11 @@ declare int fatorialiterativo(int n)
   while (n > 0) 
     fatorial = fatorial * n;
     n = n - 1;
-  endwhile;
+  endwhile
+
+  if((a > 0)&&(!(b!=7)))
+    a = 2;
+  endif
 
   return fatorial;
 enddeclare

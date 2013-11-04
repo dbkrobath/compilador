@@ -39,7 +39,7 @@
 
 1383434721 c:\users\diogo.krobath\documents\github\compilador\estruturas.h
 
-1383583114 c:\users\diogo.krobath\documents\github\compilador\constantes.h
+1383606694 c:\users\diogo.krobath\documents\github\compilador\constantes.h
 
 1380138300 source:c:\users\diogo.krobath\documents\compilador\compilador-master\compilador-master\automato.c
 	"automato.h"
@@ -123,7 +123,7 @@
 	"constantes.h"
 	"xml_parse_lib/xml_parse_lib.h"
 
-1383583809 source:c:\users\diogo.krobath\documents\github\compilador\sintatico.c
+1383606952 source:c:\users\diogo.krobath\documents\github\compilador\sintatico.c
 	<stdio.h>
 	<ctype.h>
 	<stdlib.h>

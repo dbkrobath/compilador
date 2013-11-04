@@ -854,6 +854,10 @@ char *tipoParaStringSintatica(int tipo)
             return "operador_matematico";
             break;
 
+        case OPERADOR_NEGACAO:
+            return "operador_negacao";
+            break;
+
         case DELIMITADOR:
             return "delimitador";
             break;
