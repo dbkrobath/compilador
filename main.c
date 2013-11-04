@@ -9,7 +9,7 @@ int main()
 
     FILE *programaFonte;
 
-    programaFonte = fopen("ape-entrada.txt","r");
+    programaFonte = fopen("ape-entrada-completo.txt","r");
     if(!programaFonte)
     {
         printf( "Erro na abertura do arquivo fonte");

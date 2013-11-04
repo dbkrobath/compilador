@@ -145,7 +145,7 @@ void enviaTokenSintatico(token *token)
                 {
                     Transicao *transicaoAux = listaTransicaoAux->transicao;
 
-                    char valorTerminal[20] = "\0";
+                    char valorTerminal[40] = "\0";
 
                     if(token->tipo==PALAVRARESERVADA)
                     {
@@ -153,10 +153,6 @@ void enviaTokenSintatico(token *token)
 
                     }
                     else if(token->tipo==DELIMITADOR)
-                    {
-                        strcpy(valorTerminal,token->valor);
-                    }
-                    else if(token->tipo==OPERADOR)
                     {
                         strcpy(valorTerminal,token->valor);
                     }
@@ -208,8 +204,26 @@ void enviaTokenSintatico(token *token)
                             }
                             else
                             {
-                                aceitouLinguagem = -1;
-                                printf("\n Linguagem invalida!!! ");
+                                //Verifica se existe uma chamada de submaquina na etapa corrente
+                                if(estadoEmUso->chamadaSubMaquina!=NULL)
+                                {
+                                    ChamadaSubMaquina *chamadaAux = estadoEmUso->chamadaSubMaquina;
+                                    Estado *estadoRetorno = chamadaAux->estadoRetorno;
+
+                                    empilhaEstado(automatoEmUso,estadoRetorno,&pilhaEstados);
+                                    automatoEmUso = estadoEmUso->chamadaSubMaquina->proxAutomato;
+                                    estadoEmUso = estadoInicial(automatoEmUso);
+
+                                    printf("\n Empilha o estado de retorno %d e chamada de submaquina para  %c",estadoRetorno->estado,*(automatoEmUso->ID));
+
+                                    enviaTokenSintatico(token);
+
+                                }
+                                else
+                                {
+                                    aceitouLinguagem = -1;
+                                    printf("\n Linguagem invalida!!! ");
+                                }
 
                             }
                         }
@@ -228,7 +242,7 @@ void enviaTokenSintatico(token *token)
 void inicializarListaAutomatos(ListaAutomatos **L)
 {
     *L = NULL;
-/*
+
     Automato *automatoPrograma = (Automato *) malloc (sizeof(Automato));
 
     strcpy(automatoPrograma->ID,"programa");
@@ -248,7 +262,7 @@ void inicializarListaAutomatos(ListaAutomatos **L)
     automatoComandos->listaEstados = NULL;
     strcpy(automatoComandos->XML_File_Name,"xml_maquinas\\comandos.xml");
 
-
+/*
     Automato *automatoTipo = (Automato *) malloc (sizeof(Automato));
 
     strcpy(automatoTipo->ID,"tipo");
@@ -266,7 +280,8 @@ void inicializarListaAutomatos(ListaAutomatos **L)
     strcpy(automatoOpComparacao->ID,"operadores_comparacao");
     automatoOpComparacao->listaEstados = NULL;
     strcpy(automatoOpComparacao->XML_File_Name,"xml_maquinas\\operadores_comparacao.xml");
-*/
+
+
     Automato *automatoE = (Automato *) malloc (sizeof(Automato));
 
     strcpy(automatoE->ID,"E");
@@ -279,16 +294,16 @@ void inicializarListaAutomatos(ListaAutomatos **L)
     automatoT->listaEstados = NULL;
     strcpy(automatoT->XML_File_Name,"xml_maquinas\\automatoT.xml");
 
-/*
+*/
     adicionarListaAutomatos(automatoPrograma,L);
     adicionarListaAutomatos(automatoExpressao,L);
     adicionarListaAutomatos(automatoComandos,L);
-    adicionarListaAutomatos(automatoTipo,L);
-    adicionarListaAutomatos(automatoOpMatematico,L);
-    adicionarListaAutomatos(automatoOpComparacao,L);
-*/
-    adicionarListaAutomatos(automatoE,L);
-    adicionarListaAutomatos(automatoT,L);
+//    adicionarListaAutomatos(automatoTipo,L);
+//    adicionarListaAutomatos(automatoOpMatematico,L);
+//    adicionarListaAutomatos(automatoOpComparacao,L);
+
+//    adicionarListaAutomatos(automatoE,L);
+//    adicionarListaAutomatos(automatoT,L);
 
 
 }
@@ -316,7 +331,7 @@ void carregarAutomatosJFLAP(ListaAutomatos **listaAutomatos)
             int to = 0;
             int toNum = 0;
             int read = 0;
-            char readTerminal[20];
+            char readTerminal[40] = "\0";
 
 
         ListaEstados *listaEstados;
@@ -434,7 +449,7 @@ void carregarAutomatosJFLAP(ListaAutomatos **listaAutomatos)
                     transicao->proximoEstado = estadoTo;
 
                     int i = 0;
-                    char terminalSemAspas[20] = "\0";
+                    char terminalSemAspas[40] = "\0";
 
                     for(i= 1;i<strlen(readTerminal)-1;i++)
                     {
@@ -471,10 +486,7 @@ void carregarAutomatosJFLAP(ListaAutomatos **listaAutomatos)
 
                 }
 
-
-
-
-
+                char readTerminal[40] = "\0";
 
 
                 //printf("Tag name comparaao = '%s'\n", tagname );
@@ -830,12 +842,24 @@ char *tipoParaStringSintatica(int tipo)
             return "float";
             break;
 
-        case OPERADOR:
-            return "operador";
+        case OPERADOR_BOOLEANO:
+            return "operador_booleano";
+            break;
+
+        case OPERADOR_COMPARACAO:
+            return "operador_comparacao";
+            break;
+
+        case OPERADOR_MATEMATICO:
+            return "operador_matematico";
             break;
 
         case DELIMITADOR:
             return "delimitador";
+            break;
+
+        case ATRIBUICAO:
+            return "=";
             break;
 
         case STRING:
@@ -847,6 +871,26 @@ char *tipoParaStringSintatica(int tipo)
 
 char *palavraReservadaParaStringSintatica(char* palavraReservada)
 {
+    if(strcmp(palavraReservada,"int")==0)
+    {
+        return "tipo";
+    }
+
+    if(strcmp(palavraReservada,"char")==0)
+    {
+        return "tipo";
+    }
+
+    if(strcmp(palavraReservada,"float")==0)
+    {
+        return "tipo";
+    }
+
+    if(strcmp(palavraReservada,"boolean")==0)
+    {
+        return "tipo";
+    }
+
     return palavraReservada;
 }
 

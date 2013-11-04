@@ -34,7 +34,7 @@ typedef struct _listaChamadasSubMaquina{
 
 typedef struct _transicao{
     struct Estado* proximoEstado;
-    char terminal[20];
+    char terminal[40];
 }Transicao;
 
 typedef struct _listaTransicao{

@@ -85,12 +85,6 @@
   </state>
   <state id="40" name="q40">
   </state>
-  <state id="41" name="q41">
-  </state>
-  <state id="42" name="q42">
-  </state>
-  <state id="43" name="q43">
-  </state>
   <transition>
     <from>0</from>
     <to>1</to>
@@ -109,7 +103,7 @@
   <transition>
     <from>2</from>
     <to>4</to>
-    <read>tipo</read>
+    <read>"tipo"</read>
   </transition>
   <transition>
     <from>2</from>
@@ -119,7 +113,7 @@
   <transition>
     <from>3</from>
     <to>6</to>
-    <read>tipo</read>
+    <read>"tipo"</read>
   </transition>
   <transition>
     <from>3</from>
@@ -128,7 +122,7 @@
   </transition>
   <transition>
     <from>4</from>
-    <to>25</to>
+    <to>24</to>
     <read>"identificador"</read>
   </transition>
   <transition>
@@ -154,7 +148,7 @@
   <transition>
     <from>10</from>
     <to>11</to>
-    <read>tipo</read>
+    <read>"tipo"</read>
   </transition>
   <transition>
     <from>10</from>
@@ -163,13 +157,13 @@
   </transition>
   <transition>
     <from>11</from>
-    <to>31</to>
+    <to>30</to>
     <read>"identificador"</read>
   </transition>
   <transition>
     <from>12</from>
     <to>14</to>
-    <read>tipo</read>
+    <read>"tipo"</read>
   </transition>
   <transition>
     <from>12</from>
@@ -188,12 +182,12 @@
   </transition>
   <transition>
     <from>13</from>
-    <to>17</to>
+    <to>3</to>
     <read>";"</read>
   </transition>
   <transition>
     <from>14</from>
-    <to>19</to>
+    <to>18</to>
     <read>"identificador"</read>
   </transition>
   <transition>
@@ -203,128 +197,128 @@
   </transition>
   <transition>
     <from>16</from>
-    <to>18</to>
-    <read>"inteiro"</read>
+    <to>17</to>
+    <read>"numero_inteiro"</read>
   </transition>
   <transition>
     <from>17</from>
-    <to>7</to>
-    <read>comandos</read>
+    <to>19</to>
+    <read>"]"</read>
+  </transition>
+  <transition>
+    <from>18</from>
+    <to>14</to>
+    <read>","</read>
   </transition>
   <transition>
     <from>18</from>
     <to>20</to>
-    <read>"]"</read>
-  </transition>
-  <transition>
-    <from>19</from>
-    <to>14</to>
-    <read>","</read>
-  </transition>
-  <transition>
-    <from>19</from>
-    <to>21</to>
     <read>"["</read>
   </transition>
   <transition>
-    <from>19</from>
-    <to>22</to>
+    <from>18</from>
+    <to>21</to>
     <read>";"</read>
   </transition>
   <transition>
-    <from>20</from>
+    <from>19</from>
     <to>6</to>
     <read>","</read>
   </transition>
   <transition>
-    <from>20</from>
-    <to>17</to>
+    <from>19</from>
+    <to>3</to>
     <read>";"</read>
   </transition>
   <transition>
-    <from>21</from>
-    <to>23</to>
-    <read>"inteiro"</read>
+    <from>20</from>
+    <to>22</to>
+    <read>"numero_inteiro"</read>
   </transition>
   <transition>
-    <from>22</from>
+    <from>21</from>
     <to>15</to>
     <read>comandos</read>
   </transition>
   <transition>
-    <from>23</from>
-    <to>24</to>
+    <from>22</from>
+    <to>23</to>
     <read>"]"</read>
   </transition>
   <transition>
-    <from>24</from>
+    <from>23</from>
     <to>14</to>
     <read>","</read>
   </transition>
   <transition>
-    <from>24</from>
-    <to>22</to>
+    <from>23</from>
+    <to>21</to>
     <read>";"</read>
+  </transition>
+  <transition>
+    <from>24</from>
+    <to>25</to>
+    <read>"("</read>
   </transition>
   <transition>
     <from>25</from>
     <to>26</to>
-    <read>"("</read>
+    <read>"tipo"</read>
   </transition>
   <transition>
-    <from>26</from>
+    <from>25</from>
     <to>27</to>
-    <read>tipo</read>
-  </transition>
-  <transition>
-    <from>26</from>
-    <to>28</to>
     <read>")"</read>
   </transition>
   <transition>
-    <from>27</from>
-    <to>35</to>
-    <read>"identificador"</read>
-  </transition>
-  <transition>
-    <from>28</from>
-    <to>29</to>
-    <read>tipo</read>
-  </transition>
-  <transition>
-    <from>28</from>
-    <to>30</to>
-    <read>comandos</read>
-  </transition>
-  <transition>
-    <from>29</from>
+    <from>26</from>
     <to>34</to>
     <read>"identificador"</read>
   </transition>
   <transition>
-    <from>30</from>
-    <to>32</to>
+    <from>27</from>
+    <to>28</to>
+    <read>"tipo"</read>
+  </transition>
+  <transition>
+    <from>27</from>
+    <to>29</to>
+    <read>comandos</read>
+  </transition>
+  <transition>
+    <from>28</from>
+    <to>35</to>
+    <read>"identificador"</read>
+  </transition>
+  <transition>
+    <from>29</from>
+    <to>31</to>
     <read>"return"</read>
   </transition>
   <transition>
-    <from>31</from>
-    <to>33</to>
+    <from>30</from>
+    <to>32</to>
     <read>","</read>
   </transition>
   <transition>
-    <from>31</from>
+    <from>30</from>
     <to>12</to>
     <read>")"</read>
   </transition>
   <transition>
-    <from>32</from>
-    <to>15</to>
+    <from>31</from>
+    <to>33</to>
     <read>expressao</read>
   </transition>
   <transition>
-    <from>33</from>
+    <from>32</from>
     <to>11</to>
-    <read>tipo</read>
+    <read>"tipo"</read>
+  </transition>
+  <transition>
+    <from>33</from>
+    <to>15</to>
+    <read>";"</read>
   </transition>
   <transition>
     <from>34</from>
@@ -333,77 +327,52 @@
   </transition>
   <transition>
     <from>34</from>
-    <to>37</to>
-    <read>"["</read>
-  </transition>
-  <transition>
-    <from>34</from>
-    <to>38</to>
-    <read>";"</read>
-  </transition>
-  <transition>
-    <from>35</from>
-    <to>39</to>
-    <read>","</read>
+    <to>27</to>
+    <read>")"</read>
   </transition>
   <transition>
     <from>35</from>
     <to>28</to>
-    <read>")"</read>
+    <read>","</read>
+  </transition>
+  <transition>
+    <from>35</from>
+    <to>37</to>
+    <read>"["</read>
+  </transition>
+  <transition>
+    <from>35</from>
+    <to>38</to>
+    <read>";"</read>
   </transition>
   <transition>
     <from>36</from>
-    <to>42</to>
-    <read>"identificador"</read>
+    <to>26</to>
+    <read>"tipo"</read>
   </transition>
   <transition>
     <from>37</from>
-    <to>40</to>
+    <to>39</to>
     <read>"numero_inteiro"</read>
   </transition>
   <transition>
     <from>38</from>
-    <to>30</to>
+    <to>29</to>
     <read>comandos</read>
   </transition>
   <transition>
     <from>39</from>
-    <to>27</to>
-    <read>tipo</read>
-  </transition>
-  <transition>
-    <from>40</from>
-    <to>41</to>
+    <to>40</to>
     <read>"]"</read>
   </transition>
   <transition>
-    <from>41</from>
-    <to>36</to>
+    <from>40</from>
+    <to>28</to>
     <read>","</read>
   </transition>
   <transition>
-    <from>41</from>
+    <from>40</from>
     <to>38</to>
     <read>";"</read>
-  </transition>
-  <transition>
-    <from>42</from>
-    <to>36</to>
-    <read>","</read>
-  </transition>
-  <transition>
-    <from>42</from>
-    <to>43</to>
-    <read>"["</read>
-  </transition>
-  <transition>
-    <from>42</from>
-    <to>38</to>
-    <read>";"</read>
-  </transition>
-  <transition>
-    <from>43</from>
-    <to>40</to>
-    <read>"inteiro"</read>
   </transition>
 </structure>

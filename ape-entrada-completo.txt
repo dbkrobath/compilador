@@ -2,22 +2,28 @@
 	
 declare int fatorialrecursivo(int n) 
 
+  int resposta;
+
   if (n <= 1) 
-    return 1;
+    resposta = 1;
   else
-    return n * fatorialrecursivo(n-1);
-  endif
+    resposta = n * fatorialrecursivo(n-1);
+  endif;
+
+  return resposta;
 
 enddeclare
 
 
-declare int fatorial_iterativo(int n)  
-  int fatorial = 1;
+declare int fatorialiterativo(int n)  
+  int fatorial;
+
+  fatorial = 1;
 
   while (n > 0) 
     fatorial = fatorial * n;
     n = n - 1;
-  endwhile
+  endwhile;
 
   return fatorial;
 enddeclare

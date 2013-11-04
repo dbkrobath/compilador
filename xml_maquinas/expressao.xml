@@ -156,12 +156,12 @@
   <transition>
     <from>1</from>
     <to>7</to>
-    <read>operadores_matematicos</read>
+    <read>"operador_matematico"</read>
   </transition>
   <transition>
     <from>1</from>
     <to>4</to>
-    <read>operadores_comparacao</read>
+    <read>"operador_comparacao"</read>
   </transition>
   <transition>
     <from>2</from>
@@ -171,12 +171,12 @@
   <transition>
     <from>3</from>
     <to>7</to>
-    <read>operadores_matematicos</read>
+    <read>"operador_matematico"</read>
   </transition>
   <transition>
     <from>3</from>
     <to>4</to>
-    <read>operadores_comparacao</read>
+    <read>"operador_comparacao"</read>
   </transition>
   <transition>
     <from>4</from>
@@ -326,7 +326,7 @@
   <transition>
     <from>11</from>
     <to>4</to>
-    <read>operadores_comparacao</read>
+    <read>"operador_comparacao"</read>
   </transition>
   <transition>
     <from>12</from>
@@ -336,7 +336,7 @@
   <transition>
     <from>13</from>
     <to>4</to>
-    <read>operadores_comparacao</read>
+    <read>"operador_comparacao"</read>
   </transition>
   <transition>
     <from>14</from>
@@ -386,7 +386,7 @@
   <transition>
     <from>15</from>
     <to>14</to>
-    <read>operadores_matematicos</read>
+    <read>"operador_matematico"</read>
   </transition>
   <transition>
     <from>15</from>
@@ -431,7 +431,7 @@
   <transition>
     <from>17</from>
     <to>14</to>
-    <read>operadores_matematicos</read>
+    <read>"operador_matematico"</read>
   </transition>
   <transition>
     <from>17</from>
@@ -506,7 +506,7 @@
   <transition>
     <from>23</from>
     <to>4</to>
-    <read>operadores_comparacao</read>
+    <read>"operador_comparacao"</read>
   </transition>
   <transition>
     <from>23</from>
@@ -586,12 +586,12 @@
   <transition>
     <from>29</from>
     <to>14</to>
-    <read>operadores_matematicos</read>
+    <read>"operador_matematico"</read>
   </transition>
   <transition>
     <from>29</from>
     <to>4</to>
-    <read>operadores_comparacao</read>
+    <read>"operador_comparacao"</read>
   </transition>
   <transition>
     <from>29</from>
@@ -646,7 +646,7 @@
   <transition>
     <from>34</from>
     <to>7</to>
-    <read>operadores_matematicos</read>
+    <read>"operador_matematico"</read>
   </transition>
   <transition>
     <from>35</from>
@@ -656,7 +656,7 @@
   <transition>
     <from>36</from>
     <to>7</to>
-    <read>operadores_matematicos</read>
+    <read>"operador_matematico"</read>
   </transition>
   <transition>
     <from>37</from>
