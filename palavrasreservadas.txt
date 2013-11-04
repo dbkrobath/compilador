@@ -16,7 +16,7 @@ while
 
 return
 
-declare
+function
 
 execute
 
@@ -26,10 +26,10 @@ endwhile
 
 endif
 
-enddeclare
+endfunction
 
-input
+scan
 
-output
+print
 
 program

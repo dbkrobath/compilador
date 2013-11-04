@@ -1,6 +1,6 @@
    program:
 	
-declare int fatorialrecursivo(int n) 
+function int fatorialrecursivo(int n) 
 
   int resposta;
 
@@ -12,18 +12,18 @@ declare int fatorialrecursivo(int n)
 
   return resposta;
 
-enddeclare
+endfunction 
 
 
-declare int fatorialiterativo(int n)  
+function  int fatorialiterativo(int n)  
   int fatorial;
 
   fatorial = 1;
 
   return fatorial;
-enddeclare
+endfunction
 
-declare void teste(int a)
+function void teste(int a)
 
   while (n > 0) 
     fatorial = fatorial * n;
@@ -34,7 +34,7 @@ declare void teste(int a)
     a = 2;
   endif
 
-enddeclare
+endfunction
 
    execute:
 

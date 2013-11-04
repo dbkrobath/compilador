@@ -93,7 +93,7 @@
   <transition>
     <from>1</from>
     <to>2</to>
-    <read>"declare"</read>
+    <read>"function"</read>
   </transition>
   <transition>
     <from>1</from>
@@ -193,12 +193,12 @@
   <transition>
     <from>15</from>
     <to>1</to>
-    <read>"enddeclare"</read>
+    <read>"endfunction"</read>
   </transition>
   <transition>
     <from>16</from>
     <to>17</to>
-    <read>"numero_inteiro"</read>
+    <read>"inteiro"</read>
   </transition>
   <transition>
     <from>17</from>
@@ -233,7 +233,7 @@
   <transition>
     <from>20</from>
     <to>22</to>
-    <read>"numero_inteiro"</read>
+    <read>"inteiro"</read>
   </transition>
   <transition>
     <from>21</from>
@@ -353,7 +353,7 @@
   <transition>
     <from>37</from>
     <to>39</to>
-    <read>"numero_inteiro"</read>
+    <read>"inteiro"</read>
   </transition>
   <transition>
     <from>38</from>
