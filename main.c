@@ -27,11 +27,8 @@ int main()
 
     while (tokenLido->tipo != NO_TOKENS)
     {
-        printf("\n \n Valor: %s   - Tipo: %d",tokenLido->valor,tokenLido->tipo);
+        //printf("\n \n Valor: %s   - Tipo: %d",tokenLido->valor,tokenLido->tipo);
         enviaTokenSintatico(tokenLido);
-
-        //printf("\n\n  Tipo: %d",tokenLido->tipo);
-
         tokenLido = extraiProximoToken(programaFonte);
     }
 
@@ -43,7 +40,6 @@ int main()
     else
         printf("\n\n\nNao aceitou a linguagem\n\n");
 
-   // printf("\n\n  Tipo: %d",tokenLido->tipo);
 
 
     fclose(programaFonte);

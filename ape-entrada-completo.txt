@@ -20,6 +20,11 @@ declare int fatorialiterativo(int n)
 
   fatorial = 1;
 
+  return fatorial;
+enddeclare
+
+declare void teste(int a)
+
   while (n > 0) 
     fatorial = fatorial * n;
     n = n - 1;
@@ -29,7 +34,6 @@ declare int fatorialiterativo(int n)
     a = 2;
   endif
 
-  return fatorial;
 enddeclare
 
    execute:

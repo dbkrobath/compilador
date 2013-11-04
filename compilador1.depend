@@ -3,7 +3,7 @@
 	<stdio.h>
 	<stdlib.h>
 
-1383573706 source:c:\users\diogo.krobath\documents\github\compilador\main.c
+1383608065 source:c:\users\diogo.krobath\documents\github\compilador\main.c
 	<stdio.h>
 	<stdlib.h>
 	"constantes.h"
@@ -20,7 +20,7 @@
 1383577162 c:\users\diogo.krobath\documents\github\compilador\automato.h
 	"estruturas.h"
 
-1383512754 source:c:\users\diogo.krobath\documents\github\compilador\automato.c
+1383608153 source:c:\users\diogo.krobath\documents\github\compilador\automato.c
 	<stdio.h>
 	<ctype.h>
 	<stdlib.h>
@@ -118,12 +118,12 @@
 	<stdio.h>
 	"constantes.h"
 
-1383508862 c:\users\diogo.krobath\documents\github\compilador\sintatico.h
+1383607496 c:\users\diogo.krobath\documents\github\compilador\sintatico.h
 	"automato.h"
 	"constantes.h"
 	"xml_parse_lib/xml_parse_lib.h"
 
-1383606952 source:c:\users\diogo.krobath\documents\github\compilador\sintatico.c
+1383608177 source:c:\users\diogo.krobath\documents\github\compilador\sintatico.c
 	<stdio.h>
 	<ctype.h>
 	<stdlib.h>

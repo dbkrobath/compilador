@@ -46,4 +46,6 @@ char *tipoParaStringSintatica(int tipo);
 
 char *palavraReservadaParaStringSintatica(char* palavraReservada);
 
+void semantico_tbd();
+
 #endif // SINTATICO_H_INCLUDED
