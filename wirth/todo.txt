@@ -1,5 +1,0 @@
-return dentro de if
-return fatorial;
-
-
-
