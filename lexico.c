@@ -109,7 +109,7 @@ token * extraiProximoToken(FILE *programaFonte)
 
             //caso nenhum token tenha sido encontrado e o proximo estado nao é o inicial, adiciona
             if(proximoEstado>1)
-                adicionarCharNaString(proximoCaracter, &tokenFormado);
+                adicionarCharNaString(proximoCaracter, tokenFormado);
 
             estadoAtual= proximoEstado;
         }

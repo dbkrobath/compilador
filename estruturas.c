@@ -181,15 +181,14 @@ token* insereToken(int tipo, char *valor, token **T)
 void populaTabelaPalavrasReservadas(noLista **palavraReservada) {
 
     FILE *entrada;
-    int id = 1;
+    int id = 1, ret=1;
 
     entrada = fopen("palavrasreservadas.txt" , "r");
 
-    char *palavraLida;
-
-    while (fscanf(entrada, "%s", palavraLida) == 1)
+    while (ret == 1)
     {
-
+        char palavraLida[255]="/0";
+        ret = fscanf(entrada, "%s", palavraLida);
         char * palavraNova = malloc(strlen(palavraLida) + 1);
         strcpy(palavraNova, palavraLida);
 

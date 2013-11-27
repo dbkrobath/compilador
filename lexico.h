@@ -7,6 +7,7 @@
 #include "constantes.h"
 
 
+void adicionarCharNaString(char caracter, char* stringOriginal);
 
 void extrairTokens(FILE *programaFonte);
 

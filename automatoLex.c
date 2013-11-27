@@ -1,3 +1,4 @@
+#include <stdlib.h>
 #include "automatoLex.h"
 
 //matrix de trainsicoes, linhas sao os estados e colunas os caracters em codigo ASC
@@ -18,6 +19,7 @@ void inicializarAutomatoLex()
 	int numeroDeLinhas = NUMERO_ESTADOS +2;
 	int numeroDeColunas = 176;
 
+    tabelaTransicao=NULL;
  	tabelaTransicao = (int **) calloc (numeroDeLinhas, sizeof(int*));
 	int indiceLinha;
 	for ( indiceLinha = 0; indiceLinha < numeroDeLinhas; indiceLinha++ )
@@ -26,7 +28,6 @@ void inicializarAutomatoLex()
     tabelaSaida = (int*) calloc (numeroDeLinhas, sizeof(int));
 
     FILE *fTransicoes;
-    char c;
 
     fTransicoes = fopen("transicoes.txt","r");
     if(!fTransicoes)

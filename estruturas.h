@@ -25,11 +25,13 @@ int buscaSimboloLista(char *palavra, noLista *lista);
 typedef struct _token{
     int tipo;   //tipo do token
     char *valor; //valor do token
-    struct _token *proxToken //aponta para o proximo token
+    struct _token *proxToken; //aponta para o proximo token
 }token;
 
 void inicializaToken(token **T);
 token* insereToken(int tipo, char *valor, token **T);
+void populaTabelaPalavrasReservadas(noLista **palavraReservada);
+token* geraToken(int tipo, char *valor);
 
 
 

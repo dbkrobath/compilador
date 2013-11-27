@@ -101,7 +101,7 @@ void printAutomato(Automato *A)
     if(A != NULL)
     {
 
-        ListaEstados *listaEstados = A->listaEstados;
+        ListaEstados *listaEstados = (ListaEstados *) A->listaEstados;
         estadoAtual = listaEstados->estado;
 
         printf("\n\n Automato  %s ",(A->ID));
@@ -129,7 +129,7 @@ void printAutomato(Automato *A)
                 {
                     transicaoAtual = listaTransicao->transicao;
 
-                    Estado *proximoEstado = transicaoAtual->proximoEstado;
+                    Estado *proximoEstado = (Estado *)transicaoAtual->proximoEstado;
 
                     //int estadoFuturo = (transicaoAtual->proximoEstado)->estado;
                     printf("\n Transicao para %d com token %s",(proximoEstado->estado),(transicaoAtual->terminal));
@@ -141,8 +141,8 @@ void printAutomato(Automato *A)
 
             if(estadoAtual->chamadaSubMaquina!= NULL)
             {
-                Automato *proximoAutomato = estadoAtual->chamadaSubMaquina->proxAutomato;
-                Estado *estadoRetorno = estadoAtual->chamadaSubMaquina->estadoRetorno;
+                Automato *proximoAutomato = (Automato *)estadoAtual->chamadaSubMaquina->proxAutomato;
+                Estado *estadoRetorno = (Estado *)estadoAtual->chamadaSubMaquina->estadoRetorno;
                 printf("\n Chamada de submaquina %s, estado de retorno %d ",(proximoAutomato->ID),estadoRetorno->estado);
             }
 
@@ -172,7 +172,7 @@ Estado *estadoInicial(Automato *A)
         if(A->listaEstados!=NULL)
         {
             //Assume que o peimrio estado da lista de estados é o estado inicial
-            ListaEstados *lAux = A->listaEstados;
+            ListaEstados *lAux = (ListaEstados *)A->listaEstados;
 
 
 

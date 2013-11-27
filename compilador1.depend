@@ -149,3 +149,204 @@
 	<stdio.h>
 	"xml_parse_lib.c"
 
+1383614635 source:/home/daniel/Área de Trabalho/compilador-master/automato.c
+	<stdio.h>
+	<ctype.h>
+	<stdlib.h>
+	"automato.h"
+
+1383614337 /home/daniel/Área de Trabalho/compilador-master/automato.h
+	"estruturas.h"
+
+1383616087 /home/daniel/Área de Trabalho/compilador-master/estruturas.h
+
+1383615586 source:/home/daniel/Área de Trabalho/compilador-master/automatoLex.c
+	<stdlib.h>
+	"automatoLex.h"
+
+1383614337 /home/daniel/Área de Trabalho/compilador-master/automatoLex.h
+	<stdio.h>
+	"constantes.h"
+
+1383614337 /home/daniel/Área de Trabalho/compilador-master/constantes.h
+
+1383614755 source:/home/daniel/Área de Trabalho/compilador-master/estruturas.c
+	<stdio.h>
+	<ctype.h>
+	<stdlib.h>
+	"estruturas.h"
+	<string.h>
+
+1383616089 source:/home/daniel/Área de Trabalho/compilador-master/lexico.c
+	"lexico.h"
+	<string.h>
+
+1383615822 /home/daniel/Área de Trabalho/compilador-master/lexico.h
+	<stdio.h>
+	<string.h>
+	"automatoLex.h"
+	"estruturas.h"
+	"constantes.h"
+
+1383614337 source:/home/daniel/Área de Trabalho/compilador-master/main.c
+	<stdio.h>
+	<stdlib.h>
+	"constantes.h"
+	"lexico.h"
+	"sintatico.h"
+
+1383614337 /home/daniel/Área de Trabalho/compilador-master/sintatico.h
+	"automato.h"
+	"constantes.h"
+	"xml_parse_lib/xml_parse_lib.h"
+
+1383614337 /home/daniel/Área de Trabalho/compilador-master/xml_parse_lib/xml_parse_lib.h
+	<stdio.h>
+	<stdlib.h>
+
+1383614971 source:/home/daniel/Área de Trabalho/compilador-master/sintatico.c
+	<stdio.h>
+	<ctype.h>
+	<stdlib.h>
+	<string.h>
+	"sintatico.h"
+
+1383614337 source:/home/daniel/Área de Trabalho/compilador-master/xml_parse_lib/xml_parse_lib.c
+	<stdlib.h>
+	<string.h>
+	"xml_parse_lib.h"
+
+1383618236 source:c:\users\diogo\downloads\arquivos\compilador-master\automato.c
+	<stdio.h>
+	<ctype.h>
+	<stdlib.h>
+	"automato.h"
+
+1383617938 c:\users\diogo\downloads\arquivos\compilador-master\automato.h
+	"estruturas.h"
+
+1383619688 c:\users\diogo\downloads\arquivos\compilador-master\estruturas.h
+
+1383619186 source:c:\users\diogo\downloads\arquivos\compilador-master\automatolex.c
+	<stdlib.h>
+	"automatoLex.h"
+
+1383617938 c:\users\diogo\downloads\arquivos\compilador-master\automatolex.h
+	<stdio.h>
+	"constantes.h"
+
+1383617938 c:\users\diogo\downloads\arquivos\compilador-master\constantes.h
+
+1383618356 source:c:\users\diogo\downloads\arquivos\compilador-master\estruturas.c
+	<stdio.h>
+	<ctype.h>
+	<stdlib.h>
+	"estruturas.h"
+	<string.h>
+
+1383619690 source:c:\users\diogo\downloads\arquivos\compilador-master\lexico.c
+	"lexico.h"
+	<string.h>
+
+1383619422 c:\users\diogo\downloads\arquivos\compilador-master\lexico.h
+	<stdio.h>
+	<string.h>
+	"automatoLex.h"
+	"estruturas.h"
+	"constantes.h"
+
+1383617938 source:c:\users\diogo\downloads\arquivos\compilador-master\main.c
+	<stdio.h>
+	<stdlib.h>
+	"constantes.h"
+	"lexico.h"
+	"sintatico.h"
+
+1383617938 c:\users\diogo\downloads\arquivos\compilador-master\sintatico.h
+	"automato.h"
+	"constantes.h"
+	"xml_parse_lib/xml_parse_lib.h"
+
+1383617938 c:\users\diogo\downloads\arquivos\compilador-master\xml_parse_lib\xml_parse_lib.h
+	<stdio.h>
+	<stdlib.h>
+
+1383618572 source:c:\users\diogo\downloads\arquivos\compilador-master\sintatico.c
+	<stdio.h>
+	<ctype.h>
+	<stdlib.h>
+	<string.h>
+	"sintatico.h"
+
+1383617938 source:c:\users\diogo\downloads\arquivos\compilador-master\xml_parse_lib\xml_parse_lib.c
+	<stdlib.h>
+	<string.h>
+	"xml_parse_lib.h"
+
+1383618236 source:c:\users\diogo\documents\github\compilador\automato.c
+	<stdio.h>
+	<ctype.h>
+	<stdlib.h>
+	"automato.h"
+
+1383617938 c:\users\diogo\documents\github\compilador\automato.h
+	"estruturas.h"
+
+1383619688 c:\users\diogo\documents\github\compilador\estruturas.h
+
+1383619186 source:c:\users\diogo\documents\github\compilador\automatolex.c
+	<stdlib.h>
+	"automatoLex.h"
+
+1383617938 c:\users\diogo\documents\github\compilador\automatolex.h
+	<stdio.h>
+	"constantes.h"
+
+1383617938 c:\users\diogo\documents\github\compilador\constantes.h
+
+1383618356 source:c:\users\diogo\documents\github\compilador\estruturas.c
+	<stdio.h>
+	<ctype.h>
+	<stdlib.h>
+	"estruturas.h"
+	<string.h>
+
+1383619690 source:c:\users\diogo\documents\github\compilador\lexico.c
+	"lexico.h"
+	<string.h>
+
+1383619422 c:\users\diogo\documents\github\compilador\lexico.h
+	<stdio.h>
+	<string.h>
+	"automatoLex.h"
+	"estruturas.h"
+	"constantes.h"
+
+1383617938 source:c:\users\diogo\documents\github\compilador\main.c
+	<stdio.h>
+	<stdlib.h>
+	"constantes.h"
+	"lexico.h"
+	"sintatico.h"
+
+1383617938 c:\users\diogo\documents\github\compilador\sintatico.h
+	"automato.h"
+	"constantes.h"
+	"xml_parse_lib/xml_parse_lib.h"
+
+1383617938 c:\users\diogo\documents\github\compilador\xml_parse_lib\xml_parse_lib.h
+	<stdio.h>
+	<stdlib.h>
+
+1383618572 source:c:\users\diogo\documents\github\compilador\sintatico.c
+	<stdio.h>
+	<ctype.h>
+	<stdlib.h>
+	<string.h>
+	"sintatico.h"
+
+1383617938 source:c:\users\diogo\documents\github\compilador\xml_parse_lib\xml_parse_lib.c
+	<stdlib.h>
+	<string.h>
+	"xml_parse_lib.h"
+

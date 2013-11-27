@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <ctype.h>
 #include <stdlib.h>
+#include <string.h>
 #include "sintatico.h"
 
 
@@ -126,10 +127,10 @@ void enviaTokenSintatico(token *token)
                     if(estadoEmUso->chamadaSubMaquina!=NULL)
                     {
                         ChamadaSubMaquina *chamadaAux = estadoEmUso->chamadaSubMaquina;
-                        Estado *estadoRetorno = chamadaAux->estadoRetorno;
+                        Estado *estadoRetorno = (Estado *)chamadaAux->estadoRetorno;
 
                         empilhaEstado(automatoEmUso,estadoRetorno,&pilhaEstados);
-                        automatoEmUso = estadoEmUso->chamadaSubMaquina->proxAutomato;
+                        automatoEmUso = (Automato *) estadoEmUso->chamadaSubMaquina->proxAutomato;
                         estadoEmUso = estadoInicial(automatoEmUso);
 
                         //printf("\n Empilha o estado de retorno %d e chamada de submaquina para  %c",estadoRetorno->estado,*(automatoEmUso->ID));
@@ -174,7 +175,7 @@ void enviaTokenSintatico(token *token)
 
                     if(strcmp(transicaoAux->terminal, valorTerminal) == 0)
                     {
-                        estadoEmUso = transicaoAux->proximoEstado;
+                        estadoEmUso = (Estado *)transicaoAux->proximoEstado;
 
                         //printf("\n Transicao para %d com token %s",(estadoEmUso->estado),(transicaoAux->terminal));
 
@@ -220,10 +221,10 @@ void enviaTokenSintatico(token *token)
                                 if(estadoEmUso->chamadaSubMaquina!=NULL)
                                 {
                                     ChamadaSubMaquina *chamadaAux = estadoEmUso->chamadaSubMaquina;
-                                    Estado *estadoRetorno = chamadaAux->estadoRetorno;
+                                    Estado *estadoRetorno = (Estado *)chamadaAux->estadoRetorno;
 
                                     empilhaEstado(automatoEmUso,estadoRetorno,&pilhaEstados);
-                                    automatoEmUso = estadoEmUso->chamadaSubMaquina->proxAutomato;
+                                    automatoEmUso = (Automato *)estadoEmUso->chamadaSubMaquina->proxAutomato;
                                     estadoEmUso = estadoInicial(automatoEmUso);
 
                                     //printf("\n Empilha o estado de retorno %d e chamada de submaquina para  %c",estadoRetorno->estado,*(automatoEmUso->ID));
@@ -261,20 +262,20 @@ void inicializarListaAutomatos(ListaAutomatos **L)
 
     strcpy(automatoPrograma->ID,"programa");
     automatoPrograma->listaEstados = NULL;
-    strcpy(automatoPrograma->XML_File_Name,"xml_maquinas\\programa.xml");
+    strcpy(automatoPrograma->XML_File_Name,"xml_maquinas/programa.xml");
 
     Automato *automatoExpressao = (Automato *) malloc (sizeof(Automato));
 
     strcpy(automatoExpressao->ID,"expressao");
     automatoExpressao->listaEstados = NULL;
-    strcpy(automatoExpressao->XML_File_Name,"xml_maquinas\\expressao.xml");
+    strcpy(automatoExpressao->XML_File_Name,"xml_maquinas/expressao.xml");
 
 
     Automato *automatoComandos = (Automato *) malloc (sizeof(Automato));
 
     strcpy(automatoComandos->ID,"comandos");
     automatoComandos->listaEstados = NULL;
-    strcpy(automatoComandos->XML_File_Name,"xml_maquinas\\comandos.xml");
+    strcpy(automatoComandos->XML_File_Name,"xml_maquinas/comandos.xml");
 
 /*
     Automato *automatoTipo = (Automato *) malloc (sizeof(Automato));
