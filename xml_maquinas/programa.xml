@@ -83,8 +83,6 @@
   </state>
   <state id="39" name="q39">
   </state>
-  <state id="40" name="q40">
-  </state>
   <transition>
     <from>0</from>
     <to>1</to>
@@ -342,7 +340,7 @@
   </transition>
   <transition>
     <from>35</from>
-    <to>38</to>
+    <to>27</to>
     <read>";"</read>
   </transition>
   <transition>
@@ -352,27 +350,22 @@
   </transition>
   <transition>
     <from>37</from>
-    <to>39</to>
+    <to>38</to>
     <read>"inteiro"</read>
   </transition>
   <transition>
     <from>38</from>
-    <to>29</to>
-    <read>comandos</read>
-  </transition>
-  <transition>
-    <from>39</from>
-    <to>40</to>
+    <to>39</to>
     <read>"]"</read>
   </transition>
   <transition>
-    <from>40</from>
+    <from>39</from>
     <to>28</to>
     <read>","</read>
   </transition>
   <transition>
-    <from>40</from>
-    <to>38</to>
+    <from>39</from>
+    <to>27</to>
     <read>";"</read>
   </transition>
 </structure>

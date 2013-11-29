@@ -292,7 +292,7 @@
 1383617938 c:\users\diogo\documents\github\compilador\automato.h
 	"estruturas.h"
 
-1383619688 c:\users\diogo\documents\github\compilador\estruturas.h
+1385660134 c:\users\diogo\documents\github\compilador\estruturas.h
 
 1383619186 source:c:\users\diogo\documents\github\compilador\automatolex.c
 	<stdlib.h>
@@ -302,16 +302,16 @@
 	<stdio.h>
 	"constantes.h"
 
-1383617938 c:\users\diogo\documents\github\compilador\constantes.h
+1385697923 c:\users\diogo\documents\github\compilador\constantes.h
 
-1383618356 source:c:\users\diogo\documents\github\compilador\estruturas.c
+1385677495 source:c:\users\diogo\documents\github\compilador\estruturas.c
 	<stdio.h>
 	<ctype.h>
 	<stdlib.h>
 	"estruturas.h"
 	<string.h>
 
-1383619690 source:c:\users\diogo\documents\github\compilador\lexico.c
+1385665101 source:c:\users\diogo\documents\github\compilador\lexico.c
 	"lexico.h"
 	<string.h>
 
@@ -322,23 +322,24 @@
 	"estruturas.h"
 	"constantes.h"
 
-1383617938 source:c:\users\diogo\documents\github\compilador\main.c
+1385610556 source:c:\users\diogo\documents\github\compilador\main.c
 	<stdio.h>
 	<stdlib.h>
 	"constantes.h"
 	"lexico.h"
 	"sintatico.h"
 
-1383617938 c:\users\diogo\documents\github\compilador\sintatico.h
+1385673821 c:\users\diogo\documents\github\compilador\sintatico.h
 	"automato.h"
 	"constantes.h"
+	"semantico.h"
 	"xml_parse_lib/xml_parse_lib.h"
 
 1383617938 c:\users\diogo\documents\github\compilador\xml_parse_lib\xml_parse_lib.h
 	<stdio.h>
 	<stdlib.h>
 
-1383618572 source:c:\users\diogo\documents\github\compilador\sintatico.c
+1385676758 source:c:\users\diogo\documents\github\compilador\sintatico.c
 	<stdio.h>
 	<ctype.h>
 	<stdlib.h>
@@ -349,4 +350,16 @@
 	<stdlib.h>
 	<string.h>
 	"xml_parse_lib.h"
+
+1385693990 c:\users\diogo\documents\github\compilador\semantico.h
+	"constantes.h"
+	"automato.h"
+	"estruturas.h"
+
+1385705707 source:c:\users\diogo\documents\github\compilador\semantico.c
+	<stdio.h>
+	<ctype.h>
+	<stdlib.h>
+	<string.h>
+	"semantico.h"
 

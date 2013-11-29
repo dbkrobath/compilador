@@ -7,14 +7,15 @@
 
 typedef struct _noLista{
     int id;
-    char *valor;
+    char valor[100];
+    int bloco;
     struct _noLista *prox; //Apronta para o próximo da lista
 }noLista;
 
 void inicializaLista(noLista **L);
-void insereNo(int value, char *palavra, noLista **L);
+void insereNo(int value, char *palavra, noLista **L, int bloco);
 noLista* procuraLista(char *palavra, noLista *L);
-int ultimoIdentificador(noLista **L);
+int ultimoIdentificador(noLista *L);
 int adicionaSimboloLista(char *palavra, noLista **lista) ;
 int buscaSimboloLista(char *palavra, noLista *lista);
 

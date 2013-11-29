@@ -20,6 +20,9 @@ int lerProximoCaracter = 1;
 
 char tokenFormado[200];
 
+//Armazena o id do escopo sendo lindo pelo compilador
+int idBlocoAtual;
+
 
 /*
  Inicializacao do analisador Lexico
@@ -33,6 +36,8 @@ void inicializarLexico()
     inicializaToken(&TokenLista);
     populaTabelaPalavrasReservadas(&NoPalavraReservada);
     inicializarAutomatoLex();
+
+    idBlocoAtual = 0;
 
 }
 
@@ -135,6 +140,10 @@ token* retornarTokenEncontrado(char* tokenEncontrado, int tipo)
     switch(tipo)
     {
 
+        case TIPO:
+            return insereToken(TIPO,tokenEncontrado,&TokenLista);
+            break;
+
         case INTEIRO:
             return insereToken(INTEIRO,tokenEncontrado,&TokenLista);
             break;
@@ -144,6 +153,9 @@ token* retornarTokenEncontrado(char* tokenEncontrado, int tipo)
             break;
 
         case NO_TOKENS:
+
+            imprimeLista(NoSimbolo);
+
             return geraToken(NO_TOKENS,"");
             break;
 
@@ -151,11 +163,36 @@ token* retornarTokenEncontrado(char* tokenEncontrado, int tipo)
             return geraToken(COMENTARIO,tokenEncontrado);
             break;
 
+        case OPERADOR_COMPARACAO:
+            return geraToken(OPERADOR_COMPARACAO,tokenEncontrado);
+            break;
+
+        case OPERADOR_MATEMATICO:
+            return geraToken(OPERADOR_MATEMATICO,tokenEncontrado);
+            break;
+
+        case OPERADOR_BOOLEANO:
+            return geraToken(OPERADOR_BOOLEANO,tokenEncontrado);
+            break;
+
+        case OPERADOR_NEGACAO:
+            return geraToken(OPERADOR_NEGACAO,tokenEncontrado);
+            break;
+
+        case DELIMITADOR:
+            return geraToken(DELIMITADOR,tokenEncontrado);
+            break;
+
+        case ATRIBUICAO:
+            return geraToken(ATRIBUICAO,tokenEncontrado);
+            break;
+
         case STRING:
 
             //adiciona na lista de strings
             adicionaSimboloLista(tokenEncontrado, &NoString);
-            return insereToken(STRING,tokenEncontrado,&TokenLista);
+            return geraToken(STRING,tokenEncontrado);
+            //return insereToken(STRING,tokenEncontrado,&TokenLista);
             break;
 
 
@@ -163,19 +200,46 @@ token* retornarTokenEncontrado(char* tokenEncontrado, int tipo)
 
             //Verifica se é uma palavra reservada
 
+
             if (buscaSimboloLista(tokenEncontrado, NoPalavraReservada) > 0) {
-                return insereToken(PALAVRARESERVADA,tokenEncontrado,&TokenLista);
+
+                if(strcmp(tokenEncontrado,"function")==0)
+                {
+                    idBlocoAtual = ultimoIdentificador(NoSimbolo) + 1;
+
+                }
+
+                if(strcmp(tokenEncontrado,"endfunction")==0)
+                {
+                    idBlocoAtual = -1;
+                }
+
+                return geraToken(PALAVRARESERVADA,tokenEncontrado);
+                //return insereToken(PALAVRARESERVADA,tokenEncontrado,&TokenLista);
             }
-            else //Verifica se ja existe na lista de simbolos
-                if (buscaSimboloLista(tokenEncontrado, NoSimbolo) > 0) {
-                    return insereToken(tipo,tokenEncontrado,&TokenLista);
+            else
+            {
+
+                //Verifica se ja existe na lista de simbolos
+                if (buscaSimboloListaBloco(tokenEncontrado, NoSimbolo, idBlocoAtual) > 0) {
+
+                    //printf("\n Simbolo %s ja existe na tabela de simbolos",tokenEncontrado);
+                    return geraToken(tipo,tokenEncontrado);
+                    //return insereToken(tipo,tokenEncontrado,&TokenLista);
                 }
                 else
                 {
+
+                    int identificador;
+
                     //adiciona na lista de simbolos
-                    adicionaSimboloLista(tokenEncontrado, &NoSimbolo);
-                    return insereToken(tipo,tokenEncontrado,&TokenLista);
+                    identificador = adicionaSimboloListaBloco(tokenEncontrado, &NoSimbolo, idBlocoAtual);
+
+                    //printf("\n Simbolo %s sendo adicionado na tabela de simbolos %d ",tokenEncontrado,identificador);
+                    return geraToken(tipo,tokenEncontrado);
+                    //return insereToken(tipo,tokenEncontrado,&TokenLista);
                 }
+            }
 
             break;
     }

@@ -15,3 +15,8 @@
 #define COMENTARIO 999
 
 #define NUMERO_ESTADOS 25
+
+#define ESTADO_EXP_A 0
+#define ESTADO_EXP_B 1
+#define ESTADO_EXP_C 2
+#define ESTADO_EXP_D 3

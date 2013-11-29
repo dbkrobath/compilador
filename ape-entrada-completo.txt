@@ -3,50 +3,18 @@
 function int fatorialrecursivo(int n) 
 
   int resposta;
-
-  if (n <= 1) 
-    resposta = 1;
-  else
-    resposta = n * fatorialrecursivo(n-1);
-  endif
-
+  
+  resposta = 1/2-5*3;
+  
   return resposta;
 
 endfunction 
 
 
-function  int fatorialiterativo(int n)  
-  int fatorial;
-
-  fatorial = 1;
-
-  while (n > 0) 
-    fatorial = fatorial * n;
-    n = n - 1;
-  endwhile
-
-
-  return fatorial;
-endfunction
-
-function void teste(int a)
-
-  while (n > 0) 
-    fatorial = fatorial * n;
-    n = n - 1;
-  endwhile
-
-  if((a > 0)&&(!(b!=7)))
-    a = 2;
-  endif
-
-endfunction
-
    execute:
 
 int fatorial10recursivo;
 int fatorial10iterativo;
-fatorial10recursivo = fatorialrecursivo(10);
-fatorial10iterativo = fatorialiterativo(10);
+
 
    endprogram

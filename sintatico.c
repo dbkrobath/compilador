@@ -4,8 +4,6 @@
 #include <string.h>
 #include "sintatico.h"
 
-
-
 ListaAutomatos *listaAutomatos;
 Automato *automatoEmUso;
 Estado *estadoEmUso;
@@ -51,7 +49,7 @@ void enviaTokenSintatico(token *token)
 
     if(token->tipo==NO_TOKENS)
     {
-        //printf("\n\nNo tokens");
+        printf("\n\nNo tokens");
 
         if(estadoEmUso->estadoFinal==1)
         {
@@ -68,7 +66,7 @@ void enviaTokenSintatico(token *token)
 
                 //printf("\n Desempilha e volta para estado %d e automato %c",estadoEmUso->estado,*(automatoEmUso->ID));
 
-                semantico_tbd();
+                //processa_semantico(token,automatoEmUso);
 
                 enviaTokenSintatico(token);
             }
@@ -110,7 +108,7 @@ void enviaTokenSintatico(token *token)
 
                         //printf("\n Desempilha e volta para estado %d e automato %c",estadoEmUso->estado,*(automatoEmUso->ID));
 
-                        semantico_tbd();
+                        //processa_semantico(token,automatoEmUso);
 
                         enviaTokenSintatico(token);
                     }
@@ -135,7 +133,7 @@ void enviaTokenSintatico(token *token)
 
                         //printf("\n Empilha o estado de retorno %d e chamada de submaquina para  %c",estadoRetorno->estado,*(automatoEmUso->ID));
 
-                        semantico_tbd();
+                        //processa_semantico(token,automatoEmUso);
 
                         enviaTokenSintatico(token);
 
@@ -143,7 +141,7 @@ void enviaTokenSintatico(token *token)
                     else
                     {
                         aceitouLinguagem = -1;
-                        //printf("\n Linguagem invalida!!! ");
+                        printf("\n Linguagem invalida!!! ");
                     }
 
                 }
@@ -170,7 +168,6 @@ void enviaTokenSintatico(token *token)
                         strcpy(valorTerminal,tipoParaStringSintatica(token->tipo));
                     }
 
-
                     //printf("\n Compara %s com o token %s ",transicaoAux->terminal,valorTerminal);
 
                     if(strcmp(transicaoAux->terminal, valorTerminal) == 0)
@@ -179,7 +176,7 @@ void enviaTokenSintatico(token *token)
 
                         //printf("\n Transicao para %d com token %s",(estadoEmUso->estado),(transicaoAux->terminal));
 
-                        semantico_tbd();
+                        processa_semantico(token,automatoEmUso);
 
                         listaTransicaoAux = NULL;
                     }
@@ -205,7 +202,7 @@ void enviaTokenSintatico(token *token)
 
                                     //printf("\n Desempilha e volta para estado %d e automato %c",estadoEmUso->estado,*(automatoEmUso->ID));
 
-                                    semantico_tbd();
+                                    //processa_semantico(token,automatoEmUso);
 
                                     enviaTokenSintatico(token);
                                 }
@@ -229,7 +226,7 @@ void enviaTokenSintatico(token *token)
 
                                     //printf("\n Empilha o estado de retorno %d e chamada de submaquina para  %c",estadoRetorno->estado,*(automatoEmUso->ID));
 
-                                    semantico_tbd();
+                                    //processa_semantico(token,automatoEmUso);
 
                                     enviaTokenSintatico(token);
 
@@ -915,5 +912,5 @@ char *palavraReservadaParaStringSintatica(char* palavraReservada)
 
 void semantico_tbd()
 {
-    printf("TODO\n");
+    printf("\n TODO");
 }

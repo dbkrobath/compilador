@@ -3,6 +3,7 @@
 #define MaxStr 2000
 #include "automato.h"
 #include "constantes.h"
+#include "semantico.h"
 #include "xml_parse_lib/xml_parse_lib.h"
 
 typedef struct _listaAutomatos{
